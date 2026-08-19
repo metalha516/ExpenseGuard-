@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>ExpenseGuard - Review Expense</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-container-lowest": "#ffffff",
+                "inverse-primary": "#9dd1bf",
+                "sky-blue": "#C7CEEA",
+                "secondary-fixed": "#f1daff",
+                "on-tertiary-fixed-variant": "#5a422f",
+                "error": "#ba1a1a",
+                "tertiary-fixed": "#ffdcc4",
+                "surface-tint": "#366758",
+                "background": "#f8f9fa",
+                "on-background": "#191c1d",
+                "secondary-container": "#f1daff",
+                "on-secondary": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "on-surface": "#191c1d",
+                "on-error": "#ffffff",
+                "surface-container": "#edeeef",
+                "inverse-on-surface": "#f0f1f2",
+                "on-primary-fixed": "#002018",
+                "surface-container-highest": "#e1e3e4",
+                "secondary-fixed-dim": "#d4bfe2",
+                "lavender": "#E2CCF0",
+                "primary-fixed": "#b9eedb",
+                "on-primary-container": "#396b5c",
+                "tertiary-container": "#fdd8bf",
+                "on-primary": "#ffffff",
+                "surface-container-high": "#e7e8e9",
+                "outline": "#707975",
+                "surface-variant": "#e1e3e4",
+                "mint": "#B5EAD7",
+                "surface-bright": "#f8f9fa",
+                "on-tertiary-fixed": "#2a1708",
+                "secondary": "#695876",
+                "on-secondary-fixed-variant": "#50405e",
+                "on-surface-variant": "#404945",
+                "tertiary": "#745945",
+                "on-tertiary-container": "#785d49",
+                "tertiary-fixed-dim": "#e3c0a8",
+                "on-secondary-fixed": "#231530",
+                "on-primary-fixed-variant": "#1c4f41",
+                "surface-container-low": "#f3f4f5",
+                "peach": "#FFDAC1",
+                "surface": "#f8f9fa",
+                "border-dark": "#1A1C1E",
+                "error-container": "#ffdad6",
+                "inverse-surface": "#2e3132",
+                "outline-variant": "#c0c9c4",
+                "primary-fixed-dim": "#9dd1bf",
+                "dark-bg": "#2D2E37",
+                "on-error-container": "#93000a",
+                "surface-dim": "#d9dadb",
+                "primary-container": "#b5ead7",
+                "on-secondary-container": "#6f5e7d",
+                "primary": "#366758"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "margin-mobile": "1.25rem",
+                "gutter-mobile": "0.75rem",
+                "stack-gap": "1rem",
+                "container-padding": "1rem",
+                "touch-target": "2.75rem"
+        },
+        "fontFamily": {
+                "headline-lg": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "headline-lg-mobile": [
+                        "Inter"
+                ],
+                "label-md": [
+                        "Inter"
+                ],
+                "display-currency": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "metadata": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "headline-lg": [
+                        "28px",
+                        {
+                                "lineHeight": "34px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-md": [
+                        "20px",
+                        {
+                                "lineHeight": "26px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "30px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-md": [
+                        "13px",
+                        {
+                                "lineHeight": "18px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-currency": [
+                        "40px",
+                        {
+                                "lineHeight": "48px",
+                                "letterSpacing": "-0.03em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "body-lg": [
+                        "17px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "metadata": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-md": [
+                        "15px",
+                        {
+                                "lineHeight": "22px",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .tabular-nums { font-variant-numeric: tabular-nums; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top App Bar (Transactional intent - simplified) -->
+<header class="sticky top-0 w-full z-40 bg-background px-margin-mobile py-4 flex items-center justify-between border-b border-surface-container-highest">
+<button class="w-11 h-11 flex items-center justify-center rounded-full hover:bg-surface-container-highest transition-colors text-on-surface-variant active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">Review Expense</h1>
+<div class="w-11 h-11"></div> <!-- Spacer for centering -->
+</header>
+<main class="flex-grow px-margin-mobile pt-6 pb-[calc(100px+var(--safe-area-bottom))]">
+<!-- Receipt Thumbnail Container -->
+<div class="flex justify-center mb-8">
+<div class="relative w-40 h-56 rounded-xl overflow-hidden bg-surface-container-low">
+<img class="w-full h-full object-cover" data-alt="A macro shot of a crisp white thermal paper receipt resting on a textured wooden desk. The receipt shows a faded black ink printing of an AWS transaction for $49.99. The lighting is soft and diffused, coming from a nearby window, creating a warm editorial feel typical of a financial app. The image conveys precision and a hint of modern enterprise utility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLWb_xR2zKMIUwW5rroSkatODBiXlZiQ7YTxUTRxBVYCunVMqZ7510QUoqB8TxHBzeuIjlTeMARe_Tq-oV0U0m31dqdy3l8vFOqWXtKb6HEKMSOXf_Dzm453ADWSxZH5PX-7a7_ZsTLzj__iEOYN7rbdFX8RD5xy9fBZtge3G4WG_r7_N4Dfs4EHnGRhbLOQ8IgrfNUQWTMEq9Fdl0YPU4yPOpgK4O5FZ5ZxbdEmzEx_7gvy_eM01x"/>
+<!-- Scan Overlay effect -->
+<div class="absolute inset-0 bg-gradient-to-t from-sky-blue/30 to-transparent flex items-end p-3">
+<div class="flex items-center gap-1.5 text-on-primary-container bg-sky-blue/90 px-2.5 py-1 rounded-full text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">document_scanner</span>
+                        Extracted
+                    </div>
+</div>
+</div>
+</div>
+<!-- Expense Amount -->
+<div class="text-center mb-stack-gap">
+<p class="font-metadata text-metadata text-on-surface-variant mb-1 uppercase tracking-widest">Total Amount</p>
+<div class="font-display-currency text-display-currency text-primary tabular-nums">$49.99</div>
+</div>
+<!-- Form Fields (Auto-filled) -->
+<div class="space-y-stack-gap">
+<!-- Vendor -->
+<div class="bg-surface-container-low rounded-xl p-4 transition-all">
+<label class="block font-metadata text-metadata text-on-surface-variant mb-1.5">Vendor</label>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-lavender flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface text-[18px]">cloud</span>
+</div>
+<input class="w-full bg-transparent border-none p-0 font-body-lg text-body-lg text-on-surface focus:ring-0" readonly="" type="text" value="AWS"/>
+</div>
+</div>
+<!-- Category -->
+<div class="bg-surface-container-low rounded-xl p-4">
+<label class="block font-metadata text-metadata text-on-surface-variant mb-1.5">Category</label>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-peach flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface text-[18px]">devices</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface">Software Subscription</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</div>
+</div>
+<!-- Date -->
+<div class="bg-surface-container-low rounded-xl p-4">
+<label class="block font-metadata text-metadata text-on-surface-variant mb-1.5">Date</label>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-sky-blue flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface text-[18px]">calendar_today</span>
+</div>
+<input class="w-full bg-transparent border-none p-0 font-body-lg text-body-lg text-on-surface focus:ring-0 tabular-nums" readonly="" type="text" value="Oct 24, 2023"/>
+</div>
+</div>
+<!-- Policy Check -->
+<div class="mt-8 rounded-xl bg-mint/50 p-4 relative overflow-hidden">
+<div class="relative z-10 flex gap-4">
+<div class="w-10 h-10 rounded-full bg-mint flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-primary-container mb-0.5">This one's all set ✅</h3>
+<p class="font-body-md text-body-md text-on-primary-container/80">Within monthly software budget</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Fixed Bottom Action Area -->
+<div class="fixed bottom-0 left-0 w-full bg-surface px-margin-mobile pt-4 pb-[max(20px,env(safe-area-inset-bottom))] z-50 border-t border-surface-container-highest">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-full active:scale-[0.98] transition-transform flex items-center justify-center gap-2">
+            Submit
+            <span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</body></html>

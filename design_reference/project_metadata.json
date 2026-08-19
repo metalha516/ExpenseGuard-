@@ -1,0 +1,288 @@
+{
+  "name": "projects/8461537487819419423",
+  "title": "ExpenseGuard AI Mobile App",
+  "visibility": "PRIVATE",
+  "createTime": "2026-09-01T12:56:44.032418Z",
+  "updateTime": "2026-10-05T05:01:51.490182Z",
+  "projectType": "TEXT_TO_UI_PRO",
+  "thumbnailScreenshot": {
+    "name": "projects/8461537487819419423/screens/6d92debe28d044eb9b43954fb79e555d/fileEntries/screenshot",
+    "downloadUrl": "https://lh3.googleusercontent.com/aida/AEtjO1XkULO8u8mowho3FbSLgNgUQHESskIrZCiBdtiMe3s2f_mH2C60U-FDczwtDDHLwAntM_Xzkd8EAuK2MJf9YOBcpF9dcaCoMNwWwJz3ohKnTs78nQsI4_MYfBf1gt-Mgwz8r39q6ZUCT2ZZroK3jrov1wnduWv13wdRmTs3oplx3pyozdtflg1Mif-cn3_xjmD0XGaIxXxnyjtihvVuRcXq4vcToGfy8EnWNro3T-gB_2u5vX6EEiRA_A"
+  },
+  "origin": "STITCH",
+  "deviceType": "MOBILE",
+  "designTheme": {
+    "colorMode": "LIGHT",
+    "font": "INTER",
+    "roundness": "ROUND_EIGHT",
+    "customColor": "#0f5e4c",
+    "headlineFont": "INTER",
+    "bodyFont": "INTER",
+    "labelFont": "INTER",
+    "namedColors": {
+      "on_secondary_container": "#735a00",
+      "secondary_container": "#fed255",
+      "surface_tint": "#206a57",
+      "on_secondary": "#ffffff",
+      "surface_container_highest": "#e7e2db",
+      "surface_bright": "#fff8f1",
+      "secondary_fixed_dim": "#ecc246",
+      "on_primary_container": "#8fd5be",
+      "surface_container_lowest": "#ffffff",
+      "outline": "#6f7975",
+      "on_secondary_fixed": "#241a00",
+      "on_tertiary": "#ffffff",
+      "surface_container_high": "#ede7e0",
+      "on_background": "#1d1b17",
+      "on_primary": "#ffffff",
+      "primary": "#004536",
+      "on_secondary_fixed_variant": "#584400",
+      "error_container": "#ffdad6",
+      "inverse_primary": "#8ed4bd",
+      "surface": "#fff8f1",
+      "primary_container": "#0f5e4c",
+      "primary_fixed": "#aaf1d9",
+      "tertiary_fixed_dim": "#71dba2",
+      "on_error": "#ffffff",
+      "surface_container_low": "#f9f3ec",
+      "inverse_on_surface": "#f6f0e9",
+      "on_primary_fixed_variant": "#005140",
+      "surface_variant": "#e7e2db",
+      "outline_variant": "#bfc9c3",
+      "surface_container": "#f3ede6",
+      "tertiary_container": "#00603c",
+      "surface_dim": "#dfd9d2",
+      "on_tertiary_fixed_variant": "#005232",
+      "on_primary_fixed": "#002018",
+      "error": "#ba1a1a",
+      "on_tertiary_container": "#72dca3",
+      "on_error_container": "#93000a",
+      "on_surface": "#1d1b17",
+      "tertiary_fixed": "#8df8bd",
+      "primary_fixed_dim": "#8ed4bd",
+      "secondary_fixed": "#ffe08e",
+      "secondary": "#755b00",
+      "on_tertiary_fixed": "#002112",
+      "inverse_surface": "#32302c",
+      "tertiary": "#00462a",
+      "on_surface_variant": "#3f4945",
+      "background": "#fff8f1"
+    },
+    "designMd": "---\nname: Warm Editorial Enterprise\ncolors:\n  surface: '#fff8f1'\n  surface-dim: '#dfd9d2'\n  surface-bright: '#fff8f1'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#f9f3ec'\n  surface-container: '#f3ede6'\n  surface-container-high: '#ede7e0'\n  surface-container-highest: '#e7e2db'\n  on-surface: '#1d1b17'\n  on-surface-variant: '#3f4945'\n  inverse-surface: '#32302c'\n  inverse-on-surface: '#f6f0e9'\n  outline: '#6f7975'\n  outline-variant: '#bfc9c3'\n  surface-tint: '#206a57'\n  primary: '#004536'\n  on-primary: '#ffffff'\n  primary-container: '#0f5e4c'\n  on-primary-container: '#8fd5be'\n  inverse-primary: '#8ed4bd'\n  secondary: '#755b00'\n  on-secondary: '#ffffff'\n  secondary-container: '#fed255'\n  on-secondary-container: '#735a00'\n  tertiary: '#00462a'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#00603c'\n  on-tertiary-container: '#72dca3'\n  error: '#ba1a1a'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#aaf1d9'\n  primary-fixed-dim: '#8ed4bd'\n  on-primary-fixed: '#002018'\n  on-primary-fixed-variant: '#005140'\n  secondary-fixed: '#ffe08e'\n  secondary-fixed-dim: '#ecc246'\n  on-secondary-fixed: '#241a00'\n  on-secondary-fixed-variant: '#584400'\n  tertiary-fixed: '#8df8bd'\n  tertiary-fixed-dim: '#71dba2'\n  on-tertiary-fixed: '#002112'\n  on-tertiary-fixed-variant: '#005232'\n  background: '#fff8f1'\n  on-background: '#1d1b17'\n  surface-variant: '#e7e2db'\ntypography:\n  display-currency:\n    fontFamily: Inter\n    fontSize: 40px\n    fontWeight: '700'\n    lineHeight: 48px\n    letterSpacing: -0.02em\n  headline-lg:\n    fontFamily: Inter\n    fontSize: 28px\n    fontWeight: '600'\n    lineHeight: 34px\n    letterSpacing: -0.01em\n  headline-md:\n    fontFamily: Inter\n    fontSize: 20px\n    fontWeight: '600'\n    lineHeight: 26px\n  body-lg:\n    fontFamily: Inter\n    fontSize: 17px\n    fontWeight: '400'\n    lineHeight: 24px\n  body-md:\n    fontFamily: Inter\n    fontSize: 15px\n    fontWeight: '400'\n    lineHeight: 22px\n  label-md:\n    fontFamily: Inter\n    fontSize: 13px\n    fontWeight: '600'\n    lineHeight: 18px\n    letterSpacing: 0.01em\n  metadata:\n    fontFamily: Inter\n    fontSize: 12px\n    fontWeight: '400'\n    lineHeight: 16px\nrounded:\n  sm: 0.25rem\n  DEFAULT: 0.5rem\n  md: 0.75rem\n  lg: 1rem\n  xl: 1.5rem\n  full: 9999px\nspacing:\n  margin-mobile: 20px\n  gutter-mobile: 12px\n  stack-gap: 16px\n  safe-area-bottom: 34px\n---\n\n## Brand & Style\n\nThe brand personality is that of a \"Financial Co-pilot\"\u2014an expert advisor that is as human as it is precise. The design system balances the rigorous utility of enterprise fintech with the inviting warmth of an editorial publication.\n\nThe aesthetic direction is **Warm Editorial Enterprise-Mobile**. It moves away from the sterile, cold blues of traditional finance toward a palette of soft creams and deep botanical greens. The UI utilizes high-quality typography and tactile surfaces to create a sense of calm and reliability. It avoids aggressive \"tech\" tropes in favor of a sophisticated, grounded interface that feels premium and trustworthy.\n\nKey characteristics include:\n- **Warmth:** Using off-white and cream instead of pure white to reduce eye strain.\n- **Precision:** Clear, systematic layouts with high-contrast text for financial data.\n- **Humanity:** Rounded corners and soft shadows that make the digital experience feel more physical and approachable.\n\n## Colors\n\nThis design system uses a palette rooted in natural, organic tones to establish trust.\n\n- **Primary (Deep Teal-Green):** Used for primary actions, active navigation states, and brand identifiers. It conveys growth and stability.\n- **Secondary (Muted Gold):** Used sparingly for highlighting premium features or \"insight\" moments where the AI provides value.\n- **Backgrounds:** The primary background is a warm cream (#FAF9F6) to provide an editorial feel. In dark mode, we shift to a sophisticated deep charcoal-navy (#14171F) to maintain contrast while softening the \"true black\" harshness.\n- **Neutrals:** A range of warm grays are used for borders, secondary text, and surface levels to maintain the warmth of the primary palette.\n\n## Typography\n\nThe typography system relies on **Inter** for its exceptional legibility and modern humanist character. \n\n- **Currency & Amounts:** All financial figures must use `font-variant-numeric: tabular-nums` to ensure columns of numbers align perfectly for easy scanning.\n- **Hierarchy:** Use `display-currency` for account balances and large transaction totals. `headline-lg` is reserved for page titles and section headers.\n- **Labels:** Use `label-md` for secondary headers within cards or for form input labels. \n- **Metadata:** Smaller text used for timestamps or status secondary info should always remain legible; do not go below 12px.\n\n## Layout & Spacing\n\nThe layout is optimized for high-density financial information while maintaining a \"breathable\" editorial feel through generous margins.\n\n- **Grid:** A standard 4-column mobile grid with 20px outer margins.\n- **Rhythm:** An 8px linear scale is used for all internal padding and component spacing.\n- **Vertical Stack:** Use a 16px gap between card elements to maintain distinct separation.\n- **Safe Areas:** Ensure all bottom-fixed elements (Tab Bars, FABs) account for the iOS Home Indicator safe area (typically 34px). \n- **Touch Targets:** All interactive elements must maintain a minimum 44x44pt touch area.\n\n## Elevation & Depth\n\nHierarchy is established through **soft, low-opacity shadows** and **tonal layering** rather than heavy borders.\n\n- **Base Layer:** The warm cream background (#FAF9F6).\n- **Surface Layer:** Cards and containers use pure white (#FFFFFF) in light mode to pop against the cream background.\n- **Shadows:** Use a \"Natural Ambient\" shadow: `0px 4px 12px rgba(31, 29, 25, 0.05)`. This creates a subtle lift that feels tactile and high-end.\n- **Pressed States:** When a button or card is tapped, the shadow should decrease in blur and the element should scale slightly (98%) to simulate a physical \"press\" into the screen.\n\n## Shapes\n\nThe shape language is friendly and approachable. \n\n- **Standard Cards & Containers:** Use a 16px corner radius (`rounded-lg` in this system).\n- **Interactive Elements:** Buttons and input fields should match the 16px radius for a cohesive look.\n- **Status Badges:** Use a full pill-shape (circular ends) to distinguish them from interactive buttons.\n- **Icons:** Use rounded icon sets (e.g., Lucide Rounded) to match the UI's softness.\n\n## Components\n\n### Buttons\n- **Primary FAB:** Circular or large pill-shaped Teal button (#0F5E4C) with a white icon.\n- **Ghost Buttons:** For secondary actions, use a subtle warm-gray border (#E7E4DE) with charcoal text.\n\n### Cards\n- **Transaction Cards:** White background, 16px radius. Left-aligned icon (merchant logo or category), followed by merchant name/date, and right-aligned bold amount using tabular figures.\n- **Card Stack:** When showing multiple physical/virtual cards, use a 12px vertical offset to show depth.\n\n### Navigation\n- **Bottom Tab Bar:** Translucent frosted-glass effect (Backdrop Blur: 20px) with a subtle top border (#E7E4DE). Active states use the Primary Teal color.\n- **Bottom Sheets:** Use for quick expense submission. These should have a 32px top corner radius and a subtle \"drag handle\" at the top center.\n\n### Feedback & Status\n- **Status Pills:** Small, pill-shaped backgrounds with low-opacity fills of the status color (e.g., Success Green at 10% opacity) with high-contrast text and a 12px icon.\n- **Input Fields:** 16px rounded corners, 1px border (#E7E4DE). Focus state uses a 2px Teal border with a soft teal outer glow.",
+    "colorVariant": "FIDELITY",
+    "overridePrimaryColor": "#0f5e4c",
+    "overrideSecondaryColor": "#c9a227",
+    "overrideTertiaryColor": "#2e9e6b",
+    "overrideNeutralColor": "#1f1d19",
+    "spacingScale": 2,
+    "typography": {
+      "label-md": {
+        "fontFamily": "Inter",
+        "fontSize": "13px",
+        "fontWeight": "600",
+        "lineHeight": "18px",
+        "letterSpacing": "0.01em"
+      },
+      "headline-md": {
+        "fontFamily": "Inter",
+        "fontSize": "20px",
+        "fontWeight": "600",
+        "lineHeight": "26px"
+      },
+      "body-lg": {
+        "fontFamily": "Inter",
+        "fontSize": "17px",
+        "fontWeight": "400",
+        "lineHeight": "24px"
+      },
+      "display-currency": {
+        "fontFamily": "Inter",
+        "fontSize": "40px",
+        "fontWeight": "700",
+        "lineHeight": "48px",
+        "letterSpacing": "-0.02em"
+      },
+      "headline-lg": {
+        "fontFamily": "Inter",
+        "fontSize": "28px",
+        "fontWeight": "600",
+        "lineHeight": "34px",
+        "letterSpacing": "-0.01em"
+      },
+      "body-md": {
+        "fontFamily": "Inter",
+        "fontSize": "15px",
+        "fontWeight": "400",
+        "lineHeight": "22px"
+      },
+      "metadata": {
+        "fontFamily": "Inter",
+        "fontSize": "12px",
+        "fontWeight": "400",
+        "lineHeight": "16px"
+      }
+    },
+    "spacing": {
+      "gutter-mobile": "12px",
+      "stack-gap": "16px",
+      "safe-area-bottom": "34px",
+      "margin-mobile": "20px"
+    },
+    "headlineFontFamily": "Inter",
+    "bodyFontFamily": "Inter",
+    "labelFontFamily": "Inter"
+  },
+  "screenInstances": [
+    {
+      "id": "01cf76f2ef114667baf6613b57868e41",
+      "sourceScreen": "projects/8461537487819419423/screens/01cf76f2ef114667baf6613b57868e41",
+      "x": 2840,
+      "width": 390,
+      "height": 828
+    },
+    {
+      "id": "0afa9545e55b4f2b8d2b452f34b5ff36",
+      "sourceScreen": "projects/8461537487819419423/screens/0afa9545e55b4f2b8d2b452f34b5ff36",
+      "x": 8858,
+      "width": 390,
+      "height": 1198
+    },
+    {
+      "id": "0e59c7e30fdf4daf8159c06f687d9ef6",
+      "sourceScreen": "projects/8461537487819419423/screens/0e59c7e30fdf4daf8159c06f687d9ef6",
+      "x": 7950,
+      "width": 390,
+      "height": 665
+    },
+    {
+      "id": "1d0c2434346c465181dde6bf14be8a53",
+      "sourceScreen": "projects/8461537487819419423/screens/1d0c2434346c465181dde6bf14be8a53",
+      "x": 7496,
+      "width": 390,
+      "height": 821
+    },
+    {
+      "id": "266417d085dd40eaa80a66a4eba9b187",
+      "sourceScreen": "projects/8461537487819419423/screens/266417d085dd40eaa80a66a4eba9b187",
+      "x": 1932,
+      "width": 390,
+      "height": 845
+    },
+    {
+      "id": "2cff37e1207d48b6a6df7839ed672afc",
+      "sourceScreen": "projects/8461537487819419423/screens/2cff37e1207d48b6a6df7839ed672afc",
+      "x": 9312,
+      "width": 390,
+      "height": 532
+    },
+    {
+      "id": "2e2b6d35bd774cc790f5ac4c6116c8f8",
+      "sourceScreen": "projects/8461537487819419423/screens/2e2b6d35bd774cc790f5ac4c6116c8f8",
+      "x": 1478,
+      "width": 390,
+      "height": 686
+    },
+    {
+      "id": "4bc9a7d4ced84dfe944caa42135201ef",
+      "sourceScreen": "projects/8461537487819419423/screens/4bc9a7d4ced84dfe944caa42135201ef",
+      "x": 3748,
+      "width": 390,
+      "height": 699
+    },
+    {
+      "id": "67810d7196af46408b024664185c9ffc",
+      "sourceScreen": "projects/8461537487819419423/screens/67810d7196af46408b024664185c9ffc",
+      "x": 7042,
+      "width": 390,
+      "height": 917
+    },
+    {
+      "id": "68613f0716bc4a8882cf12da718ad2ba",
+      "sourceScreen": "projects/8461537487819419423/screens/68613f0716bc4a8882cf12da718ad2ba",
+      "x": 5226,
+      "width": 390,
+      "height": 660
+    },
+    {
+      "id": "6d54fbe7f0774c3a8c0e28bc45b3c7b7",
+      "sourceScreen": "projects/8461537487819419423/screens/6d54fbe7f0774c3a8c0e28bc45b3c7b7",
+      "x": 6588,
+      "width": 390,
+      "height": 785
+    },
+    {
+      "id": "6d92debe28d044eb9b43954fb79e555d",
+      "sourceScreen": "projects/8461537487819419423/screens/6d92debe28d044eb9b43954fb79e555d",
+      "x": 1024,
+      "width": 390,
+      "height": 532
+    },
+    {
+      "id": "787cc57e905649faa7585b47ab6da9a0",
+      "sourceScreen": "projects/8461537487819419423/screens/787cc57e905649faa7585b47ab6da9a0",
+      "x": 9766,
+      "width": 390,
+      "height": 587
+    },
+    {
+      "id": "826b848c46ac4b99ae25dea988dc8f8a",
+      "sourceScreen": "projects/8461537487819419423/screens/826b848c46ac4b99ae25dea988dc8f8a",
+      "x": 2386,
+      "width": 390,
+      "height": 819
+    },
+    {
+      "id": "8dbdfcc48ed5444ea1fffad315266bf0",
+      "sourceScreen": "projects/8461537487819419423/screens/8dbdfcc48ed5444ea1fffad315266bf0",
+      "x": 6134,
+      "width": 390,
+      "height": 844
+    },
+    {
+      "id": "938bedf7767841eb9b5dcf7a0b13d4a1",
+      "sourceScreen": "projects/8461537487819419423/screens/938bedf7767841eb9b5dcf7a0b13d4a1",
+      "x": 5680,
+      "width": 390,
+      "height": 608
+    },
+    {
+      "id": "assets_00b500c7216a4c27a521fd5be7e27135",
+      "width": 960,
+      "height": 540,
+      "sourceAsset": "assets/00b500c7216a4c27a521fd5be7e27135",
+      "type": "DESIGN_SYSTEM_INSTANCE"
+    },
+    {
+      "id": "assets_d7e043fd6c054e508145dd7383df7ef9",
+      "x": 4202,
+      "width": 960,
+      "height": 540,
+      "sourceAsset": "assets/d7e043fd6c054e508145dd7383df7ef9",
+      "type": "DESIGN_SYSTEM_INSTANCE"
+    },
+    {
+      "id": "cbc3eaa4485942d395eb0f4ac1abb6e9",
+      "sourceScreen": "projects/8461537487819419423/screens/cbc3eaa4485942d395eb0f4ac1abb6e9",
+      "x": 10220,
+      "width": 390,
+      "height": 1098
+    },
+    {
+      "id": "d96c040e831d407685a8cbc4f5841e20",
+      "sourceScreen": "projects/8461537487819419423/screens/d96c040e831d407685a8cbc4f5841e20",
+      "x": 8404,
+      "width": 390,
+      "height": 730
+    },
+    {
+      "id": "da2071fab056499f8784b325dd84f2f5",
+      "sourceScreen": "projects/8461537487819419423/screens/da2071fab056499f8784b325dd84f2f5",
+      "x": 3294,
+      "width": 390,
+      "height": 910
+    }
+  ],
+  "metadata": {
+    "userRole": "OWNER"
+  }
+}

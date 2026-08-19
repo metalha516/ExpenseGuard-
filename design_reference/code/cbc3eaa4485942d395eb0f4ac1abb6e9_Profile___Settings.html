@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>ExpenseGuard - Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fff8f1",
+                    "tertiary-fixed-dim": "#71dba2",
+                    "surface-container-low": "#f9f3ec",
+                    "tertiary": "#00462a",
+                    "secondary-fixed": "#ffe08e",
+                    "on-secondary-container": "#735a00",
+                    "on-tertiary-fixed-variant": "#005232",
+                    "on-secondary-fixed": "#241a00",
+                    "surface-container-highest": "#e7e2db",
+                    "inverse-on-surface": "#f6f0e9",
+                    "on-tertiary-fixed": "#002112",
+                    "surface-bright": "#fff8f1",
+                    "on-surface": "#1d1b17",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#fed255",
+                    "inverse-surface": "#32302c",
+                    "surface-tint": "#206a57",
+                    "inverse-primary": "#8ed4bd",
+                    "outline": "#6f7975",
+                    "tertiary-container": "#00603c",
+                    "secondary": "#755b00",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#f3ede6",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#ecc246",
+                    "on-primary-fixed": "#002018",
+                    "tertiary-fixed": "#8df8bd",
+                    "surface-variant": "#e7e2db",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#584400",
+                    "primary": "#004536",
+                    "surface-container-high": "#ede7e0",
+                    "on-primary-fixed-variant": "#005140",
+                    "on-primary-container": "#8fd5be",
+                    "primary-container": "#0f5e4c",
+                    "primary-fixed-dim": "#8ed4bd",
+                    "on-error": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#bfc9c3",
+                    "primary-fixed": "#aaf1d9",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "on-background": "#1d1b17",
+                    "surface-dim": "#dfd9d2",
+                    "on-surface-variant": "#3f4945",
+                    "on-tertiary-container": "#72dca3",
+                    "surface": "#fff8f1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-gap": "16px",
+                    "safe-area-bottom": "34px",
+                    "gutter-mobile": "12px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-currency": ["Inter"],
+                    "label-md": ["Inter"],
+                    "metadata": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["17px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-md": ["15px", {"lineHeight": "22px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "26px", "fontWeight": "600"}],
+                    "display-currency": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "metadata": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "headline-lg": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+        
+        /* Custom toggle switch styling */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #0F5E4C;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #0F5E4C;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-[90px] antialiased">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-40 bg-background flex justify-between items-center px-margin-mobile py-4 transition-transform duration-200" id="topAppBar">
+<div class="flex items-center gap-3 hover:bg-surface-container-low rounded-full transition-colors cursor-pointer p-1 -ml-1">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a woman named Sarah Wilson, smiling warmly. She is wearing a modern, tailored business casual outfit in subtle neutral tones. The background is slightly blurred out, featuring a bright, airy office environment with natural lighting. The overall mood is approachable, confident, and premium, fitting for a sophisticated financial application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5ovKorjI1lq8GQUU7vBTft1eSPa7UBP6HrjxPnUYR4RpPhQhRhRrh0TSHuXAdkhhFX_HOQTqHh4tTg10oRRba5bGm1UrtHn63pp3rCbaAAowpwh9pwr8D_OGyiwFjpSmjEMaEvidD0iYckEpL0grRyIAkJfk0xzmNjhW2h3gcT6Zu4i0LQjqIM8jrw9-x8a7LlRhDyblL4B_q0MZ_dqVlthrKPsItprzzxORIeqAtMpMvPzHELmle"/>
+</div>
+</div>
+<div class="font-headline-md text-headline-md font-bold text-primary tracking-tight">ExpenseGuard</div>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+</header>
+<main class="px-margin-mobile pt-4 pb-8 max-w-lg mx-auto">
+<!-- Profile Header -->
+<section class="flex flex-col items-center mb-8">
+<div class="w-24 h-24 rounded-full overflow-hidden border-4 border-surface-container-lowest shadow-[0px_4px_12px_rgba(31,29,25,0.05)] mb-4 relative">
+<img class="w-full h-full object-cover" data-alt="A close-up professional portrait of a woman (Sarah Wilson) with a friendly, reassuring smile. She has dark hair and is dressed in a crisp, light-colored blouse. The lighting is soft and flattering, creating a warm, editorial feel against a muted cream background, perfectly matching the financial co-pilot aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCxzI0E-OKnsDQX6AooV_agmZOU538RvU-7CAYVK-YLn7QtbRFpous0RTqGkL4wUr8MnBX5IpejOrtv5kWUz39PGawLGg6Cq9wyo0R7NxMSB8S8pjcQOAR184wfm-tSgLfJavWMD3Aol_GGk1mZeywrP_6wmkiFJ_BGCEXnqciR3914T5tVybfqsbW8xFYJgZkCrWqMs_3FbAqpmN5FDFlcyOFh51Zgb5KNEz7_ltcOU-6dfnd9xj0"/>
+<button class="absolute bottom-0 right-0 bg-primary-container text-on-primary w-8 h-8 rounded-full flex items-center justify-center border-2 border-surface-container-lowest hover:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-background mb-1">Sarah Wilson</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Senior Marketing Director</p>
+</section>
+<div class="flex flex-col gap-stack-gap">
+<!-- Account Info -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(31,29,25,0.05)] overflow-hidden">
+<div class="px-4 py-3 border-b border-outline-variant/20">
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Account Info</h2>
+</div>
+<div class="flex flex-col">
+<div class="px-4 py-4 flex items-center justify-between border-b border-outline-variant/20 hover:bg-surface-container-low/50 transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">mail</span>
+<div>
+<p class="font-body-md text-body-md text-on-background">Email Address</p>
+<p class="font-metadata text-metadata text-on-surface-variant mt-0.5">sarah.w@acmecorp.com</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<div class="px-4 py-4 flex items-center justify-between border-b border-outline-variant/20 hover:bg-surface-container-low/50 transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">apartment</span>
+<div>
+<p class="font-body-md text-body-md text-on-background">Department</p>
+<p class="font-metadata text-metadata text-on-surface-variant mt-0.5">Marketing (HQ)</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+<div class="px-4 py-4 flex items-center justify-between hover:bg-surface-container-low/50 transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">badge</span>
+<div>
+<p class="font-body-md text-body-md text-on-background">Employee ID</p>
+<p class="font-metadata text-metadata text-on-surface-variant mt-0.5">EMP-84920</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Preferences & Settings -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(31,29,25,0.05)] overflow-hidden">
+<div class="px-4 py-3 border-b border-outline-variant/20">
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Preferences</h2>
+</div>
+<div class="flex flex-col">
+<div class="px-4 py-4 flex items-center justify-between border-b border-outline-variant/20 hover:bg-surface-container-low/50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">notifications_active</span>
+<div>
+<p class="font-body-md text-body-md text-on-background">Push Notifications</p>
+<p class="font-metadata text-metadata text-on-surface-variant mt-0.5">Expense approvals &amp; alerts</p>
+</div>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-surface-container-lowest border-4 border-outline-variant appearance-none cursor-pointer z-10 transition-all duration-300 right-0 border-primary-container" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-primary-container cursor-pointer transition-colors duration-300" for="toggle1"></label>
+</div>
+</div>
+<div class="px-4 py-4 flex items-center justify-between border-b border-outline-variant/20 hover:bg-surface-container-low/50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">dark_mode</span>
+<div>
+<p class="font-body-md text-body-md text-on-background">Dark Mode</p>
+<p class="font-metadata text-metadata text-on-surface-variant mt-0.5">System default</p>
+</div>
+</div>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-surface-container-lowest border-4 border-outline-variant appearance-none cursor-pointer z-10 transition-all duration-300 left-0" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-variant cursor-pointer transition-colors duration-300" for="toggle2"></label>
+</div>
+</div>
+</div>
+</section>
+<!-- Linked Cards -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(31,29,25,0.05)] overflow-hidden">
+<div class="px-4 py-3 border-b border-outline-variant/20 flex justify-between items-center">
+<h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Linked Cards</h2>
+<button class="font-label-md text-label-md text-primary-container hover:opacity-80">Add New</button>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<!-- Card Item -->
+<div class="flex items-center p-3 border border-outline-variant/30 rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-12 h-8 rounded bg-surface-container-highest flex items-center justify-center mr-3 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container to-tertiary-container opacity-90"></div>
+<span class="relative text-on-primary font-bold text-[10px] tracking-wider">CORP</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md font-semibold text-on-background">Corporate Amex</p>
+<p class="font-metadata text-metadata text-on-surface-variant">•••• 4829</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">more_vert</span>
+</div>
+</div>
+</section>
+<!-- Resources -->
+<section class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(31,29,25,0.05)] overflow-hidden mb-4">
+<div class="px-4 py-4 flex items-center justify-between hover:bg-surface-container-low/50 transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-outline">policy</span>
+<p class="font-body-md text-body-md text-on-background">Company Policy</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">open_in_new</span>
+</div>
+<div class="px-4 py-4 flex items-center justify-between border-t border-outline-variant/20 hover:bg-surface-container-low/50 transition-colors cursor-pointer text-error">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error">logout</span>
+<p class="font-body-md text-body-md font-semibold">Sign Out</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-t border-outline-variant/30 shadow-[0px_-4px_12px_rgba(31,29,25,0.05)] flex justify-around items-center px-margin-mobile pt-3 pb-safe-area-bottom md:hidden pb-[calc(env(safe-area-inset-bottom)+12px)]">
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:opacity-80 transition-opacity active:scale-95 duration-150 group">
+<div class="px-4 py-1 rounded-full group-hover:bg-surface-variant/50 transition-colors mb-1">
+<span class="material-symbols-outlined text-[24px]">home</span>
+</div>
+<span class="font-label-md text-label-md text-[11px]">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:opacity-80 transition-opacity active:scale-95 duration-150 group">
+<div class="px-4 py-1 rounded-full group-hover:bg-surface-variant/50 transition-colors mb-1">
+<span class="material-symbols-outlined text-[24px]">add_circle</span>
+</div>
+<span class="font-label-md text-label-md text-[11px]">Submit</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:opacity-80 transition-opacity active:scale-95 duration-150 group">
+<div class="px-4 py-1 rounded-full group-hover:bg-surface-variant/50 transition-colors mb-1">
+<span class="material-symbols-outlined text-[24px]">credit_card</span>
+</div>
+<span class="font-label-md text-label-md text-[11px]">Cards</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:opacity-80 transition-opacity active:scale-95 duration-150 group">
+<div class="px-4 py-1 rounded-full group-hover:bg-surface-variant/50 transition-colors mb-1">
+<span class="material-symbols-outlined text-[24px]">rule</span>
+</div>
+<span class="font-label-md text-label-md text-[11px]">Approvals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary font-semibold hover:opacity-80 transition-opacity active:scale-95 duration-150 group">
+<div class="px-4 py-1 rounded-full bg-secondary-container/30 mb-1">
+<span class="material-symbols-outlined text-[24px] fill text-primary-container">person</span>
+</div>
+<span class="font-label-md text-label-md text-[11px]">Profile</span>
+</button>
+</nav>
+<script>
+        // Simple scroll effect for TopAppBar shadow
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('topAppBar');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-[0px_4px_12px_rgba(31,29,25,0.05)]');
+            } else {
+                header.classList.remove('shadow-[0px_4px_12px_rgba(31,29,25,0.05)]');
+            }
+        });
+        
+        // Custom toggle interactions
+        const toggles = document.querySelectorAll('.toggle-checkbox');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const label = this.nextElementSibling;
+                if(this.checked) {
+                    label.classList.remove('bg-surface-variant');
+                    label.classList.add('bg-primary-container');
+                } else {
+                    label.classList.remove('bg-primary-container');
+                    label.classList.add('bg-surface-variant');
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ExpenseGuard Home Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-container-lowest": "#ffffff",
+                "inverse-primary": "#9dd1bf",
+                "sky-blue": "#C7CEEA",
+                "secondary-fixed": "#f1daff",
+                "on-tertiary-fixed-variant": "#5a422f",
+                "error": "#ba1a1a",
+                "tertiary-fixed": "#ffdcc4",
+                "surface-tint": "#366758",
+                "background": "#f8f9fa",
+                "on-background": "#191c1d",
+                "secondary-container": "#f1daff",
+                "on-secondary": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "on-surface": "#191c1d",
+                "on-error": "#ffffff",
+                "surface-container": "#edeeef",
+                "inverse-on-surface": "#f0f1f2",
+                "on-primary-fixed": "#002018",
+                "surface-container-highest": "#e1e3e4",
+                "secondary-fixed-dim": "#d4bfe2",
+                "lavender": "#E2CCF0",
+                "primary-fixed": "#b9eedb",
+                "on-primary-container": "#396b5c",
+                "tertiary-container": "#fdd8bf",
+                "on-primary": "#ffffff",
+                "surface-container-high": "#e7e8e9",
+                "outline": "#707975",
+                "surface-variant": "#e1e3e4",
+                "mint": "#B5EAD7",
+                "surface-bright": "#f8f9fa",
+                "on-tertiary-fixed": "#2a1708",
+                "secondary": "#695876",
+                "on-secondary-fixed-variant": "#50405e",
+                "on-surface-variant": "#404945",
+                "tertiary": "#745945",
+                "on-tertiary-container": "#785d49",
+                "tertiary-fixed-dim": "#e3c0a8",
+                "on-secondary-fixed": "#231530",
+                "on-primary-fixed-variant": "#1c4f41",
+                "surface-container-low": "#f3f4f5",
+                "peach": "#FFDAC1",
+                "surface": "#f8f9fa",
+                "border-dark": "#1A1C1E",
+                "error-container": "#ffdad6",
+                "inverse-surface": "#2e3132",
+                "outline-variant": "#c0c9c4",
+                "primary-fixed-dim": "#9dd1bf",
+                "dark-bg": "#2D2E37",
+                "on-error-container": "#93000a",
+                "surface-dim": "#d9dadb",
+                "primary-container": "#b5ead7",
+                "on-secondary-container": "#6f5e7d",
+                "primary": "#366758"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "margin-mobile": "1.25rem",
+                "gutter-mobile": "0.75rem",
+                "stack-gap": "1rem",
+                "container-padding": "1rem",
+                "touch-target": "2.75rem",
+                "safe-area-bottom": "34px"
+        },
+        "fontFamily": {
+                "headline-lg": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "headline-lg-mobile": [
+                        "Inter"
+                ],
+                "label-md": [
+                        "Inter"
+                ],
+                "display-currency": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "metadata": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "headline-lg": [
+                        "28px",
+                        {
+                                "lineHeight": "34px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-md": [
+                        "20px",
+                        {
+                                "lineHeight": "26px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "30px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-md": [
+                        "13px",
+                        {
+                                "lineHeight": "18px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-currency": [
+                        "40px",
+                        {
+                                "lineHeight": "48px",
+                                "letterSpacing": "-0.03em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "body-lg": [
+                        "17px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "metadata": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-md": [
+                        "15px",
+                        {
+                                "lineHeight": "22px",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        /* Base Dark Mode Override for Custom Request */
+        .dark body {
+            background-color: #2D2E37; /* Modern Pastel Flat slate background */
+            color: #ffffff;
+        }
+        /* Custom styles to bridge design system dark mode with request */
+        .dark .bg-surface-dark {
+            background-color: #2D2E37;
+        }
+        .dark .border-outline-dark {
+            border-color: #1A1C1E;
+        }
+        .text-teal-accent {
+            color: #B5EAD7; /* mint accent */
+        }
+        .bg-teal-accent-dim {
+            background-color: rgba(181, 234, 215, 0.2);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative pb-safe-area-bottom dark">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-40 bg-dark-bg flex justify-between items-center px-margin-mobile py-4 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-border-dark">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A close up portrait of a professional individual in a corporate setting, warm lighting, high quality, dark mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF5D2PWtCVjcJQgc43lT8qH6hhlXBRy2iAMgOB4XsHPZuwRfNKywEfoKlefcoycjlZ-ENRlHWWgoEoRvPHs_4mOwV8jFk3RH48iNzOIxn_uwtuwfbWNhJ-rIV9w_lGNYNCs50FQiNvPuRLDZvmBHgLDIbKz7APbQbu8dzrlj87eHQLaY9bWxSKi-AlZtXH-BLUcRGtnCdo6hDZtBkIvwNuXtX5KJWhNZx8sUSDkODkB4SEbcBPBiPK"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-white tracking-tight">ExpenseGuard</h1>
+<p class="font-metadata text-metadata text-gray-300">Good Morning, Alex</p>
+</div>
+</div>
+<button aria-label="Notifications" class="w-10 h-10 rounded-full flex items-center justify-center text-gray-300 hover:bg-surface-variant/10 transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow px-margin-mobile flex flex-col gap-stack-gap z-10 pb-24">
+<!-- Large Spend Summary Card -->
+<section class="bg-dark-bg border border-border-dark rounded-xl p-6 relative overflow-hidden">
+<p class="font-label-md text-label-md text-gray-300 mb-1">Total Spend this Month</p>
+<h2 class="font-display-currency text-display-currency text-white mb-6">$4,250.00</h2>
+<div class="flex justify-between items-end">
+<div class="flex gap-4">
+<div>
+<p class="font-metadata text-metadata text-gray-300">Approved</p>
+<p class="font-body-md text-body-md font-semibold text-mint">$3,100</p>
+</div>
+<div>
+<p class="font-metadata text-metadata text-gray-300">Pending</p>
+<p class="font-body-md text-body-md font-semibold text-peach">$1,150</p>
+</div>
+</div>
+<button class="bg-mint text-dark-bg px-4 py-2 rounded-xl font-label-md text-label-md flex items-center gap-1 hover:bg-primary-fixed-dim transition-colors duration-150 font-bold">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Expense
+                </button>
+</div>
+</section>
+<!-- Quick Actions Bento -->
+<section class="grid grid-cols-2 gap-3 mt-2">
+<button class="bg-dark-bg border border-border-dark rounded-xl p-4 flex flex-col gap-3 items-start hover:bg-surface-variant/10 transition-colors text-left group">
+<div class="w-10 h-10 rounded-full bg-sky-blue/20 text-sky-blue flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-white">Scan Receipt</h3>
+<p class="font-metadata text-metadata text-gray-300">AI auto-fill</p>
+</div>
+</button>
+<button class="bg-dark-bg border border-border-dark rounded-xl p-4 flex flex-col gap-3 items-start hover:bg-surface-variant/10 transition-colors text-left group">
+<div class="w-10 h-10 rounded-full bg-lavender/20 text-lavender flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">flight_takeoff</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-white">New Trip</h3>
+<p class="font-metadata text-metadata text-gray-300">Plan travel</p>
+</div>
+</button>
+</section>
+<!-- Transaction List -->
+<section class="mt-4 flex flex-col gap-3">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-headline-md text-headline-md font-semibold text-white">Recent Transactions</h3>
+<button class="font-label-md text-label-md text-sky-blue hover:underline">View All</button>
+</div>
+<!-- Transaction Item 1 -->
+<div class="bg-dark-bg border border-border-dark rounded-xl p-4 flex items-center justify-between active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center p-2">
+<img alt="Delta Airlines" class="w-full h-full object-contain" data-alt="A clean, minimalist airline logo icon, simple geometric shapes, isolated on a white background, corporate design style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnWG0-2CvtvQz4tXWird3aTXsW-7R3TuYPXn8hCifzFl_9Ca6uQItyzeD-e9nlscZ2qzdtQKlijhg5lmOJOLPGsXSt3Ev9GUA_Xl1wPqkwoRvKok7Hgq9MLylxNnHORq3nLR1vj1-jl57GKCp9jGL4NUutmfvATcaHW0bJeIC6KV0_t85yrtFlzrkbiAvMVhvAaGVyfpfsU2ijfn4qSNNlUM1-m4D7mZuZpMw6tvBcYggoa67Gxa2o"/>
+</div>
+<div>
+<h4 class="font-body-md text-body-md font-semibold text-white">Delta Airlines</h4>
+<p class="font-metadata text-metadata text-gray-300">Oct 24 • Travel</p>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<p class="font-body-md text-body-md font-bold text-white tabular-nums">$645.00</p>
+<span class="mt-1 px-2 py-0.5 rounded-md bg-mint/20 text-mint font-metadata text-[10px] uppercase font-semibold border border-mint/30">Approved</span>
+</div>
+</div>
+<!-- Transaction Item 2 -->
+<div class="bg-dark-bg border border-border-dark rounded-xl p-4 flex items-center justify-between active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center p-2">
+<img alt="Starbucks" class="w-full h-full object-contain" data-alt="A modern, abstract coffee shop logo, minimal line art, isolated on a white background, clean corporate design style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABrN4KK9eotTd_gr_w_pUvjl0Vbq6uqEnyn0YU8dS9_EvElt_vdy_rpWA0R1uIA2nJ5RTXj-52RNL565f4fJZFovptdGgOY3iCSeQk3x_xKenE8VUnQy2Qd0yO3vbHdb2p6htxLVSLYhC9c32jsXkzzbKKgm5omMkNlOKciLGjunU7rVMoApNUQ2v1pA0BaQz-y13AkpIX0bxDLCLkIbSOrSJjzze3s6tFTR5azO9rURr4hq3kqVCg"/>
+</div>
+<div>
+<h4 class="font-body-md text-body-md font-semibold text-white">Starbucks</h4>
+<p class="font-metadata text-metadata text-gray-300">Oct 23 • Meals</p>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<p class="font-body-md text-body-md font-bold text-white tabular-nums">$14.50</p>
+<span class="mt-1 px-2 py-0.5 rounded-md bg-peach/20 text-peach font-metadata text-[10px] uppercase font-semibold border border-peach/30">Pending</span>
+</div>
+</div>
+<!-- Transaction Item 3 -->
+<div class="bg-dark-bg border border-border-dark rounded-xl p-4 flex items-center justify-between active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-surface-variant/20 flex items-center justify-center text-gray-300 border border-border-dark">
+<span class="material-symbols-outlined">local_taxi</span>
+</div>
+<div>
+<h4 class="font-body-md text-body-md font-semibold text-white">Uber</h4>
+<p class="font-metadata text-metadata text-gray-300">Oct 21 • Transport</p>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<p class="font-body-md text-body-md font-bold text-white tabular-nums">$42.80</p>
+<span class="mt-1 px-2 py-0.5 rounded-md bg-mint/20 text-mint font-metadata text-[10px] uppercase font-semibold border border-mint/30">Approved</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button (Contextual for Home) -->
+<button class="fixed bottom-[88px] right-margin-mobile w-14 h-14 bg-mint rounded-xl flex items-center justify-center text-dark-bg z-50 hover:bg-primary-fixed-dim transition-colors duration-150 md:hidden">
+<span class="material-symbols-outlined text-[28px]">receipt_long</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-dark-bg border-t border-border-dark md:hidden pb-safe-area-bottom">
+<div class="flex justify-around items-center px-margin-mobile pt-3 pb-2 w-full">
+<!-- Home (Active) -->
+<button class="flex flex-col items-center justify-center text-mint font-semibold hover:opacity-80 transition-opacity active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-md text-[11px] mt-1">Home</span>
+</button>
+<!-- Submit -->
+<button class="flex flex-col items-center justify-center text-gray-400 hover:text-sky-blue transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-md text-[11px] mt-1">Submit</span>
+</button>
+<!-- Cards -->
+<button class="flex flex-col items-center justify-center text-gray-400 hover:text-sky-blue transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">credit_card</span>
+<span class="font-label-md text-[11px] mt-1">Cards</span>
+</button>
+<!-- Approvals -->
+<button class="flex flex-col items-center justify-center text-gray-400 hover:text-sky-blue transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">rule</span>
+<span class="font-label-md text-[11px] mt-1">Approvals</span>
+</button>
+<!-- Profile -->
+<button class="flex flex-col items-center justify-center text-gray-400 hover:text-sky-blue transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-[11px] mt-1">Profile</span>
+</button>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ExpenseGuard - Notifications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#fff8f1",
+                      "tertiary-fixed-dim": "#71dba2",
+                      "surface-container-low": "#f9f3ec",
+                      "tertiary": "#00462a",
+                      "secondary-fixed": "#ffe08e",
+                      "on-secondary-container": "#735a00",
+                      "on-tertiary-fixed-variant": "#005232",
+                      "on-secondary-fixed": "#241a00",
+                      "surface-container-highest": "#e7e2db",
+                      "inverse-on-surface": "#f6f0e9",
+                      "on-tertiary-fixed": "#002112",
+                      "surface-bright": "#fff8f1",
+                      "on-surface": "#1d1b17",
+                      "error": "#ba1a1a",
+                      "secondary-container": "#fed255",
+                      "inverse-surface": "#32302c",
+                      "surface-tint": "#206a57",
+                      "inverse-primary": "#8ed4bd",
+                      "outline": "#6f7975",
+                      "tertiary-container": "#00603c",
+                      "secondary": "#755b00",
+                      "on-tertiary": "#ffffff",
+                      "surface-container": "#f3ede6",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed-dim": "#ecc246",
+                      "on-primary-fixed": "#002018",
+                      "tertiary-fixed": "#8df8bd",
+                      "surface-variant": "#e7e2db",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed-variant": "#584400",
+                      "primary": "#004536",
+                      "surface-container-high": "#ede7e0",
+                      "on-primary-fixed-variant": "#005140",
+                      "on-primary-container": "#8fd5be",
+                      "primary-container": "#0f5e4c",
+                      "primary-fixed-dim": "#8ed4bd",
+                      "on-error": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "outline-variant": "#bfc9c3",
+                      "primary-fixed": "#aaf1d9",
+                      "error-container": "#ffdad6",
+                      "on-error-container": "#93000a",
+                      "on-background": "#1d1b17",
+                      "surface-dim": "#dfd9d2",
+                      "on-surface-variant": "#3f4945",
+                      "on-tertiary-container": "#72dca3",
+                      "surface": "#fff8f1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-gap": "16px",
+                      "safe-area-bottom": "34px",
+                      "gutter-mobile": "12px",
+                      "margin-mobile": "20px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "display-currency": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "metadata": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "17px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "15px",
+                              {
+                                      "lineHeight": "22px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "26px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-currency": [
+                              "40px",
+                              {
+                                      "lineHeight": "48px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "metadata": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "28px",
+                              {
+                                      "lineHeight": "34px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff8f1;
+            color: #1d1b17;
+            -webkit-font-smoothing: antialiased;
+        }
+      </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen flex flex-col pb-safe-area-bottom pb-24">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-40 bg-background dark:bg-background flex justify-between items-center px-margin-mobile py-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A professional headshot of a person with a warm smile, wearing a subtle dark teal blazer against a soft light cream background, fitting a corporate fintech aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu2WcS0uQue_bA0-z4v-n3lpz-vq5AgxwEO8giGb__ilZY1VOvfStZnBb5VbLV0O6F1SWeEXo83Mr3hKaPjfVCVS7j027f54XJiJ9LcWZkWPEWfOFn6uD4F4fORppjIb7hD3DoYd7xdjhQoH4JKxzJEWDvT8M_ID-3MYvqynviST6FeQObePkmFA0FsCpDshnDe8ioaZOyPbIBxeLaQYaljBuxc0YJXOSZs18RGgTenKSRfHJO9v9w"/>
+</div>
+<div class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed text-center flex-1">
+            Notifications
+        </div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors text-primary relative">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-margin-mobile py-4 space-y-stack-gap max-w-md mx-auto w-full">
+<!-- Today Group -->
+<section>
+<h2 class="font-label-md text-label-md text-on-surface-variant mb-3 uppercase tracking-wider">Today</h2>
+<div class="space-y-3">
+<!-- Unread Notification -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0px_4px_12px_rgba(31,29,25,0.05)] relative flex items-start gap-4 transition-transform hover:scale-[0.98] cursor-pointer">
+<div class="absolute top-4 right-4 w-2 h-2 rounded-full bg-primary-container"></div>
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex-1 pr-4">
+<p class="font-body-md text-body-md text-on-surface font-semibold mb-1">Alex approved your travel expense</p>
+<p class="font-metadata text-metadata text-on-surface-variant mb-2">Trip to New York HQ - $845.00</p>
+<p class="font-metadata text-metadata text-on-surface-variant opacity-70">10:42 AM</p>
+</div>
+</div>
+<!-- Warning Notification -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0px_4px_12px_rgba(31,29,25,0.05)] flex items-start gap-4 transition-transform hover:scale-[0.98] cursor-pointer border border-error/20">
+<div class="w-10 h-10 rounded-full bg-error/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-error" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface font-semibold mb-1">Policy Alert: Duplicate claim detected</p>
+<p class="font-metadata text-metadata text-on-surface-variant mb-2">Starbucks ($12.50) appears twice on Mar 12</p>
+<p class="font-metadata text-metadata text-on-surface-variant opacity-70">9:15 AM</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Yesterday Group -->
+<section class="mt-8">
+<h2 class="font-label-md text-label-md text-on-surface-variant mb-3 uppercase tracking-wider">Yesterday</h2>
+<div class="space-y-3">
+<!-- Standard Notification -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0px_4px_12px_rgba(31,29,25,0.05)] flex items-start gap-4 opacity-80 transition-transform hover:scale-[0.98] cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="insights">insights</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface font-medium mb-1">Monthly spend summary is ready</p>
+<p class="font-metadata text-metadata text-on-surface-variant mb-2">Your February expenses are ready for review.</p>
+<p class="font-metadata text-metadata text-on-surface-variant opacity-70">Yesterday, 5:00 PM</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-xl border-t border-outline-variant/30 shadow-[0px_-4px_12px_rgba(31,29,25,0.05)] flex justify-around items-center px-margin-mobile pt-3 pb-safe-area-bottom md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity w-16 group">
+<div class="w-16 h-8 flex items-center justify-center rounded-full mb-1 group-active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-2xl" data-icon="home">home</span>
+</div>
+<span class="font-label-md text-label-md">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity w-16 group">
+<div class="w-16 h-8 flex items-center justify-center rounded-full mb-1 group-active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-2xl" data-icon="add_circle">add_circle</span>
+</div>
+<span class="font-label-md text-label-md">Submit</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity w-16 group">
+<div class="w-16 h-8 flex items-center justify-center rounded-full mb-1 group-active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-2xl" data-icon="credit_card">credit_card</span>
+</div>
+<span class="font-label-md text-label-md">Cards</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity w-16 group">
+<div class="w-16 h-8 flex items-center justify-center rounded-full mb-1 group-active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-2xl" data-icon="rule">rule</span>
+</div>
+<span class="font-label-md text-label-md">Approvals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity w-16 group">
+<div class="w-16 h-8 flex items-center justify-center rounded-full mb-1 group-active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-2xl" data-icon="person">person</span>
+</div>
+<span class="font-label-md text-label-md">Profile</span>
+</button>
+</nav>
+</body></html>

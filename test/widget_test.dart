@@ -37,9 +37,10 @@ void main() {
     expect(find.text('Good morning, Alex'), findsOneWidget);
     expect(find.byType(ScaffoldWithNavBar), findsOneWidget);
     expect(find.text('Home'), findsOneWidget);
-    expect(find.text('Submit'), findsOneWidget);
     expect(find.text('Approvals'), findsOneWidget);
+    expect(find.text('Insights'), findsOneWidget);
     expect(find.text('Profile'), findsOneWidget);
+    expect(find.byKey(const Key('docked_camera_fab')), findsOneWidget);
   });
 
   testWidgets('AppTheme extensions provide expected pastel colors in Light and Dark mode',

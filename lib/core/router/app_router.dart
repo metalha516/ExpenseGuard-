@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:expense_guard/core/router/scaffold_with_nav_bar.dart';
+import 'package:expense_guard/features/home/presentation/main_shell.dart';
 import 'package:expense_guard/features/onboarding/presentation/onboarding_screen.dart';
 import 'package:expense_guard/features/auth/presentation/login_screen.dart';
 import 'package:expense_guard/features/home/presentation/home_screen.dart';
@@ -39,10 +39,10 @@ GoRouter createAppRouter({
         builder: (context, state) => const LoginScreen(),
       ),
 
-      // 3 - 7: Persistent Bottom Navigation Shell Structure
+      // 3 - 7: MainShell with persistent 5-tab navigation bar
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
-          return ScaffoldWithNavBar(navigationShell: navigationShell);
+          return MainShell(navigationShell: navigationShell);
         },
         branches: [
           // Tab 0: Home Dashboard
@@ -55,12 +55,12 @@ GoRouter createAppRouter({
             ],
           ),
 
-          // Tab 1: Submit Expense / Camera
+          // Tab 1: Approvals Queue
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: '/submit-expense',
-                builder: (context, state) => const SubmitExpenseScreen(),
+                path: '/approvals',
+                builder: (context, state) => const ApprovalsQueueScreen(),
               ),
             ],
           ),
@@ -75,12 +75,12 @@ GoRouter createAppRouter({
             ],
           ),
 
-          // Tab 3: Approvals Queue
+          // Tab 3: Spend Insights
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: '/approvals',
-                builder: (context, state) => const ApprovalsQueueScreen(),
+                path: '/insights',
+                builder: (context, state) => const SpendInsightsScreen(),
               ),
             ],
           ),
@@ -97,21 +97,28 @@ GoRouter createAppRouter({
         ],
       ),
 
-      // 8. Expense Review Screen
+      // 8. Submit Expense / Camera flow (triggered by docked center FAB)
+      GoRoute(
+        path: '/submit-expense',
+        parentNavigatorKey: rootKey,
+        builder: (context, state) => const SubmitExpenseScreen(),
+      ),
+
+      // 9. Expense Review Screen
       GoRoute(
         path: '/expense-review',
         parentNavigatorKey: rootKey,
         builder: (context, state) => const ExpenseReviewScreen(),
       ),
 
-      // 9. Policy Check Screen
+      // 10. Policy Check Screen
       GoRoute(
         path: '/policy-check',
         parentNavigatorKey: rootKey,
         builder: (context, state) => const PolicyCheckScreen(),
       ),
 
-      // 10. Transaction Detail Screen
+      // 11. Transaction Detail Screen
       GoRoute(
         path: '/transaction-detail',
         parentNavigatorKey: rootKey,
@@ -119,13 +126,6 @@ GoRouter createAppRouter({
           final id = state.uri.queryParameters['id'];
           return TransactionDetailScreen(transactionId: id);
         },
-      ),
-
-      // 11. Spend Insights Screen
-      GoRoute(
-        path: '/insights',
-        parentNavigatorKey: rootKey,
-        builder: (context, state) => const SpendInsightsScreen(),
       ),
 
       // 12. Notifications Center Screen

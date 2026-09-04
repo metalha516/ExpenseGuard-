@@ -108,7 +108,11 @@ GoRouter createAppRouter({
       GoRoute(
         path: '/expense-review',
         parentNavigatorKey: rootKey,
-        builder: (context, state) => const ExpenseReviewScreen(),
+        builder: (context, state) {
+          final imagePath =
+              state.extra as String? ?? state.uri.queryParameters['imagePath'];
+          return ExpenseReviewScreen(imagePath: imagePath);
+        },
       ),
 
       // 10. Policy Check Screen

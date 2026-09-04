@@ -15,7 +15,7 @@ class SubmitExpenseCameraScreen extends ConsumerStatefulWidget {
 }
 
 class _SubmitExpenseCameraScreenState extends ConsumerState<SubmitExpenseCameraScreen>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   CameraController? _cameraController;
   List<CameraDescription> _cameras = [];
   bool _isCameraReady = false;
@@ -30,6 +30,8 @@ class _SubmitExpenseCameraScreenState extends ConsumerState<SubmitExpenseCameraS
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+
     _scanLineController = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
@@ -45,6 +47,23 @@ class _SubmitExpenseCameraScreenState extends ConsumerState<SubmitExpenseCameraS
     );
 
     _initializeCamera();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final CameraController? controller = _cameraController;
+    if (controller == null || !controller.value.isInitialized) {
+      return;
+    }
+
+    if (state == AppLifecycleState.inactive || state == AppLifecycleState.paused) {
+      controller.dispose();
+      if (mounted) {
+        setState(() => _isCameraReady = false);
+      }
+    } else if (state == AppLifecycleState.resumed) {
+      _initializeCamera();
+    }
   }
 
   /// Request permissions and initialize the hardware camera.
@@ -91,29 +110,36 @@ class _SubmitExpenseCameraScreenState extends ConsumerState<SubmitExpenseCameraS
     } catch (_) {}
   }
 
-  Future<void> _captureReceipt() async {
+  Future<void> _captureReceipt({String? fallbackPath}) async {
     if (_isCapturing) return;
     setState(() => _isCapturing = true);
 
+    String capturedPath =
+        fallbackPath ?? '/mock/receipts/starbucks_receipt_capture.jpg';
     try {
       if (_cameraController != null && _cameraController!.value.isInitialized) {
-        await _cameraController!.takePicture();
+        final XFile picture = await _cameraController!.takePicture();
+        capturedPath = picture.path;
       } else {
         // Simulated capture delay
         await Future.delayed(const Duration(milliseconds: 300));
       }
     } catch (_) {
       // Continue to review even on hardware fallback
+    } finally {
+      if (mounted) {
+        setState(() => _isCapturing = false);
+      }
     }
 
     if (mounted) {
-      setState(() => _isCapturing = false);
-      context.push('/expense-review');
+      context.push('/expense-review', extra: capturedPath);
     }
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _scanLineController.dispose();
     _cameraController?.dispose();
     super.dispose();
@@ -368,7 +394,9 @@ class _SubmitExpenseCameraScreenState extends ConsumerState<SubmitExpenseCameraS
                         // Gallery Picker Icon
                         InkWell(
                           key: const Key('camera_gallery_picker_button'),
-                          onTap: _captureReceipt,
+                          onTap: () => _captureReceipt(
+                            fallbackPath: '/mock/gallery/picked_receipt_scan.jpg',
+                          ),
                           borderRadius: BorderRadius.circular(16),
                           child: Container(
                             width: 50,

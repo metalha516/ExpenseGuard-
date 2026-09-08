@@ -16,6 +16,7 @@ class CorporateCard {
     this.isVirtual = true,
     this.isFrozen = false,
     this.cardColorHex = '#B5EAD7',
+    this.cardLabel,
   });
 
   final String id;
@@ -30,6 +31,11 @@ class CorporateCard {
   final bool isVirtual;
   final bool isFrozen;
   final String cardColorHex;
+  final String? cardLabel;
+
+  /// Display name of the card (e.g. Corporate Visa or Software Subs)
+  String get displayName =>
+      cardLabel ?? (isVirtual ? 'Software Subs (Virtual)' : 'Corporate Visa');
 
   /// Remaining spend available on card
   double get remainingLimit => (monthlyLimit - currentSpend).clamp(0.0, double.infinity);
@@ -55,6 +61,7 @@ class CorporateCard {
     bool? isVirtual,
     bool? isFrozen,
     String? cardColorHex,
+    String? cardLabel,
   }) {
     return CorporateCard(
       id: id ?? this.id,
@@ -69,6 +76,7 @@ class CorporateCard {
       isVirtual: isVirtual ?? this.isVirtual,
       isFrozen: isFrozen ?? this.isFrozen,
       cardColorHex: cardColorHex ?? this.cardColorHex,
+      cardLabel: cardLabel ?? this.cardLabel,
     );
   }
 
@@ -86,6 +94,7 @@ class CorporateCard {
       'isVirtual': isVirtual,
       'isFrozen': isFrozen,
       'cardColorHex': cardColorHex,
+      'cardLabel': cardLabel,
     };
   }
 
@@ -103,6 +112,7 @@ class CorporateCard {
       isVirtual: json['isVirtual'] as bool? ?? true,
       isFrozen: json['isFrozen'] as bool? ?? false,
       cardColorHex: json['cardColorHex'] as String? ?? '#B5EAD7',
+      cardLabel: json['cardLabel'] as String?,
     );
   }
 
@@ -122,7 +132,8 @@ class CorporateCard {
           currency == other.currency &&
           isVirtual == other.isVirtual &&
           isFrozen == other.isFrozen &&
-          cardColorHex == other.cardColorHex;
+          cardColorHex == other.cardColorHex &&
+          cardLabel == other.cardLabel;
 
   @override
   int get hashCode => Object.hash(
@@ -138,9 +149,10 @@ class CorporateCard {
         isVirtual,
         isFrozen,
         cardColorHex,
+        cardLabel,
       );
 
   @override
   String toString() =>
-      'CorporateCard(id: $id, last4: $last4, limit: $monthlyLimit, spend: $currentSpend)';
+      'CorporateCard(id: $id, label: $displayName, last4: $last4, limit: $monthlyLimit, spend: $currentSpend, frozen: $isFrozen)';
 }

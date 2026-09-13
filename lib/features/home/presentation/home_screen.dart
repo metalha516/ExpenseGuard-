@@ -6,6 +6,7 @@ import 'package:expense_guard/core/theme/app_theme.dart';
 import 'package:expense_guard/models/models.dart';
 import 'package:expense_guard/features/home/providers/home_provider.dart';
 import 'package:expense_guard/features/shared/providers/theme_provider.dart';
+import 'package:expense_guard/features/shared/presentation/skeleton_loader.dart';
 
 /// The Home Dashboard screen featuring spend metrics, quick actions, and recent transactions.
 class HomeScreen extends ConsumerWidget {
@@ -128,9 +129,11 @@ class HomeScreen extends ConsumerWidget {
           const SizedBox(width: 8),
         ],
       ),
-      body: RefreshIndicator(
-        onRefresh: () => ref.read(homeStateProvider.notifier).refresh(),
-        child: SingleChildScrollView(
+      body: homeState.isLoading
+          ? const HomeSkeletonLoader(key: Key('home_skeleton_loader'))
+          : RefreshIndicator(
+              onRefresh: () => ref.read(homeStateProvider.notifier).refresh(),
+              child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.symmetric(
             horizontal: AppTheme.marginMobile,

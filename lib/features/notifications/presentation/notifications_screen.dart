@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:expense_guard/core/theme/app_theme.dart';
 import 'package:expense_guard/models/notification_item.dart';
 import 'package:expense_guard/features/notifications/providers/notifications_provider.dart';
+import 'package:expense_guard/features/shared/presentation/skeleton_loader.dart';
 
 /// Screen displaying the Notifications Center grouped by Today, Yesterday, and Earlier.
 /// Based on Stitch Screen ID: 2cff37e1207d48b6a6df7839ed672afc ("Notifications Center").
@@ -124,8 +125,10 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
         ],
       ),
       body: SafeArea(
-        child: Column(
-          children: [
+        child: state.isLoading
+            ? const NotificationsSkeletonLoader(key: Key('notifications_skeleton_loader'))
+            : Column(
+                children: [
             // Filter Chips Bar
             _buildFilterChips(colors, state, notifier),
             const Divider(height: 1, thickness: 1),

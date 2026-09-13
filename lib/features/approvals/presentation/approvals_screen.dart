@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:expense_guard/core/theme/app_theme.dart';
 import 'package:expense_guard/features/approvals/models/approval_item.dart';
 import 'package:expense_guard/features/approvals/providers/approvals_provider.dart';
+import 'package:expense_guard/features/shared/presentation/skeleton_loader.dart';
 
 /// Screen displaying the manager and finance Approvals Queue with AI anomaly scores,
 /// policy violation badges, and swipe-to-approve / swipe-to-reject interactions.
@@ -98,7 +99,9 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
         ],
       ),
       body: SafeArea(
-        child: Column(
+        child: state.isLoading
+            ? const ApprovalsSkeletonLoader(key: Key('approvals_skeleton_loader'))
+            : Column(
           children: [
             // Search field (if expanded)
             if (_isSearchExpanded)

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:expense_guard/core/theme/app_theme.dart';
 import 'package:expense_guard/features/insights/providers/insights_provider.dart';
+import 'package:expense_guard/features/shared/presentation/skeleton_loader.dart';
 
 /// Screen displaying Spend Insights with fl_chart donut/bar charts,
 /// time range filters (1W, 1M, 3M, YTD), and category expense breakdowns.
@@ -42,11 +43,13 @@ class _InsightsScreenState extends ConsumerState<InsightsScreen> {
         ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppTheme.marginMobile,
-            vertical: 12,
-          ),
+        child: state.isLoading
+            ? const InsightsSkeletonLoader(key: Key('insights_skeleton_loader'))
+            : SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppTheme.marginMobile,
+                  vertical: 12,
+                ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

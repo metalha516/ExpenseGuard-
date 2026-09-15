@@ -16,6 +16,37 @@ import 'package:expense_guard/features/insights/presentation/spend_insights_scre
 import 'package:expense_guard/features/notifications/presentation/notifications_center_screen.dart';
 import 'package:expense_guard/features/profile/presentation/profile_settings_screen.dart';
 
+/// Creates a smooth fade-and-subtle-slide page transition matching Pastel Flat aesthetic.
+CustomTransitionPage<void> buildSmoothPageTransition({
+  required GoRouterState state,
+  required Widget child,
+  Duration duration = const Duration(milliseconds: 280),
+}) {
+  return CustomTransitionPage<void>(
+    key: state.pageKey,
+    child: child,
+    transitionDuration: duration,
+    reverseTransitionDuration: duration,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      final curvedAnimation = CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOutCubic,
+        reverseCurve: Curves.easeInCubic,
+      );
+      return FadeTransition(
+        opacity: curvedAnimation,
+        child: SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0.04, 0.0),
+            end: Offset.zero,
+          ).animate(curvedAnimation),
+          child: child,
+        ),
+      );
+    },
+  );
+}
+
 /// Factory creating a fresh GoRouter instance for ExpenseGuard.
 GoRouter createAppRouter({
   String initialLocation = '/onboarding',
@@ -30,13 +61,19 @@ GoRouter createAppRouter({
       // 1. Onboarding Screen (Initial route)
       GoRoute(
         path: '/onboarding',
-        builder: (context, state) => const OnboardingScreen(),
+        pageBuilder: (context, state) => buildSmoothPageTransition(
+          state: state,
+          child: const OnboardingScreen(),
+        ),
       ),
 
       // 2. Login Screen
       GoRoute(
         path: '/login',
-        builder: (context, state) => const LoginScreen(),
+        pageBuilder: (context, state) => buildSmoothPageTransition(
+          state: state,
+          child: const LoginScreen(),
+        ),
       ),
 
       // 3 - 7: MainShell with persistent 5-tab navigation bar
@@ -101,17 +138,23 @@ GoRouter createAppRouter({
       GoRoute(
         path: '/submit-expense',
         parentNavigatorKey: rootKey,
-        builder: (context, state) => const SubmitExpenseScreen(),
+        pageBuilder: (context, state) => buildSmoothPageTransition(
+          state: state,
+          child: const SubmitExpenseScreen(),
+        ),
       ),
 
       // 9. Expense Review Screen
       GoRoute(
         path: '/expense-review',
         parentNavigatorKey: rootKey,
-        builder: (context, state) {
+        pageBuilder: (context, state) {
           final imagePath =
               state.extra as String? ?? state.uri.queryParameters['imagePath'];
-          return ExpenseReviewScreen(imagePath: imagePath);
+          return buildSmoothPageTransition(
+            state: state,
+            child: ExpenseReviewScreen(imagePath: imagePath),
+          );
         },
       ),
 
@@ -119,26 +162,43 @@ GoRouter createAppRouter({
       GoRoute(
         path: '/policy-check',
         parentNavigatorKey: rootKey,
-        builder: (context, state) => const PolicyCheckScreen(),
+        pageBuilder: (context, state) => buildSmoothPageTransition(
+          state: state,
+          child: const PolicyCheckScreen(),
+        ),
       ),
 
       // 11. Transaction Detail Screen
       GoRoute(
         path: '/transaction-detail',
         parentNavigatorKey: rootKey,
-        builder: (context, state) {
+        pageBuilder: (context, state) {
           final id = state.uri.queryParameters['id'] ?? (state.extra as String?);
-          return TransactionDetailScreen(transactionId: id);
+          final heroTag = state.uri.queryParameters['heroTag'];
+          return buildSmoothPageTransition(
+            state: state,
+            child: TransactionDetailScreen(
+              transactionId: id,
+              heroTag: heroTag,
+            ),
+          );
         },
         routes: [
           GoRoute(
             path: ':id',
             parentNavigatorKey: rootKey,
-            builder: (context, state) {
+            pageBuilder: (context, state) {
               final id = state.pathParameters['id'] ??
                   state.uri.queryParameters['id'] ??
                   (state.extra as String?);
-              return TransactionDetailScreen(transactionId: id);
+              final heroTag = state.uri.queryParameters['heroTag'];
+              return buildSmoothPageTransition(
+                state: state,
+                child: TransactionDetailScreen(
+                  transactionId: id,
+                  heroTag: heroTag,
+                ),
+              );
             },
           ),
         ],
@@ -148,7 +208,10 @@ GoRouter createAppRouter({
       GoRoute(
         path: '/notifications',
         parentNavigatorKey: rootKey,
-        builder: (context, state) => const NotificationsCenterScreen(),
+        pageBuilder: (context, state) => buildSmoothPageTransition(
+          state: state,
+          child: const NotificationsCenterScreen(),
+        ),
       ),
     ],
   );

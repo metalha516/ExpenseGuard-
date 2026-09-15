@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:expense_guard/core/theme/app_theme.dart';
 import 'package:expense_guard/features/expenses/providers/expense_form_provider.dart';
+import 'package:expense_guard/features/shared/presentation/animations/pastel_tap_scale.dart';
 
 /// Screen for reviewing extracted receipt data, merchant, category, and amounts
 /// based on Stitch Screen ID: 1d0c2434346c465181dde6bf14be8a53 ("Pastel Flat").
@@ -903,41 +904,45 @@ class _ExpenseReviewScreenState extends ConsumerState<ExpenseReviewScreen> {
       child: SizedBox(
         width: double.infinity,
         height: 54,
-        child: ElevatedButton(
-          key: const Key('expense_submit_button'),
-          onPressed: canSubmit ? () => _submitExpense(state) : null,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: colors.primarySage,
-            foregroundColor: Colors.white,
-            disabledBackgroundColor: colors.borderDark.withValues(alpha: 0.2),
-            disabledForegroundColor: colors.borderDark.withValues(alpha: 0.4),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-              side: BorderSide(
-                color: canSubmit ? colors.borderDark : Colors.transparent,
-                width: 1.5,
-              ),
-            ),
-            elevation: 0,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Submit',
-                style: context.labelMd.copyWith(
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16,
-                  color: canSubmit ? Colors.white : colors.borderDark.withValues(alpha: 0.4),
+        child: PastelTapScale(
+          enabled: canSubmit,
+          scaleDown: 0.96,
+          child: ElevatedButton(
+            key: const Key('expense_submit_button'),
+            onPressed: canSubmit ? () => _submitExpense(state) : null,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: colors.primarySage,
+              foregroundColor: Colors.white,
+              disabledBackgroundColor: colors.borderDark.withValues(alpha: 0.2),
+              disabledForegroundColor: colors.borderDark.withValues(alpha: 0.4),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+                side: BorderSide(
+                  color: canSubmit ? colors.borderDark : Colors.transparent,
+                  width: 1.5,
                 ),
               ),
-              const SizedBox(width: 8),
-              Icon(
-                Icons.send_rounded,
-                size: 18,
-                color: canSubmit ? Colors.white : colors.borderDark.withValues(alpha: 0.4),
-              ),
-            ],
+              elevation: 0,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Submit',
+                  style: context.labelMd.copyWith(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16,
+                    color: canSubmit ? Colors.white : colors.borderDark.withValues(alpha: 0.4),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Icon(
+                  Icons.send_rounded,
+                  size: 18,
+                  color: canSubmit ? Colors.white : colors.borderDark.withValues(alpha: 0.4),
+                ),
+              ],
+            ),
           ),
         ),
       ),

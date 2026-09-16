@@ -5,6 +5,7 @@ import 'package:expense_guard/core/theme/app_theme.dart';
 import 'package:expense_guard/features/approvals/models/approval_item.dart';
 import 'package:expense_guard/features/approvals/providers/approvals_provider.dart';
 import 'package:expense_guard/features/shared/presentation/skeleton_loader.dart';
+import 'package:expense_guard/features/shared/presentation/animations/pastel_tap_scale.dart';
 
 /// Screen displaying the manager and finance Approvals Queue with AI anomaly scores,
 /// policy violation badges, and swipe-to-approve / swipe-to-reject interactions.
@@ -464,13 +465,14 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
     ApprovalItem item,
     ApprovalsNotifier notifier,
   ) {
-    return InkWell(
+    return PastelTapScale(
       key: Key('approval_card_${item.id}'),
       onTap: () {
         // Tapping card opens the comprehensive Transaction Detail screen
-        context.push('/transaction-detail?id=${item.transactionId}');
+        context.push(
+          '/transaction-detail?id=${item.transactionId}&heroTag=approval_hero_${item.id}',
+        );
       },
-      borderRadius: BorderRadius.circular(AppTheme.cardRadius),
       child: Container(
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
@@ -720,8 +722,9 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     // Reject / Flag Button
-                    InkWell(
+                    PastelTapScale(
                       key: Key('reject_button_${item.id}'),
+                      scaleDown: 0.92,
                       onTap: () {
                         notifier.reject(item.id);
                         _showFeedbackSnackBar(
@@ -732,7 +735,6 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
                           notifier: notifier,
                         );
                       },
-                      borderRadius: BorderRadius.circular(8),
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 12,
@@ -770,8 +772,9 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
                     const SizedBox(width: 8),
 
                     // Approve Button
-                    InkWell(
+                    PastelTapScale(
                       key: Key('approve_button_${item.id}'),
+                      scaleDown: 0.92,
                       onTap: () {
                         notifier.approve(item.id);
                         _showFeedbackSnackBar(
@@ -782,7 +785,6 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
                           notifier: notifier,
                         );
                       },
-                      borderRadius: BorderRadius.circular(8),
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 12,
@@ -855,18 +857,24 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
         break;
     }
 
-    return Container(
-      width: 44,
-      height: 44,
-      decoration: BoxDecoration(
-        color: bg,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: colors.borderDark,
-          width: 1.2,
+    return Hero(
+      tag: 'approval_hero_${item.id}',
+      child: Material(
+        type: MaterialType.transparency,
+        child: Container(
+          width: 44,
+          height: 44,
+          decoration: BoxDecoration(
+            color: bg,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: colors.borderDark,
+              width: 1.2,
+            ),
+          ),
+          child: Icon(icon, color: colors.borderDark, size: 22),
         ),
       ),
-      child: Icon(icon, color: colors.borderDark, size: 22),
     );
   }
 

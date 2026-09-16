@@ -153,7 +153,7 @@ class ApprovalsNotifier extends Notifier<ApprovalsState> {
       // 3. Sarah Jenkins (From Stitch Dark Screen d96c040e831d407685a8cbc4f5841e20)
       ApprovalItem(
         id: 'appr-03',
-        transactionId: 'txn-104',
+        transactionId: 'txn-106',
         employeeName: 'Sarah Jenkins',
         employeeRole: 'Infrastructure Lead',
         employeeAvatarUrl:
@@ -193,7 +193,7 @@ class ApprovalsNotifier extends Notifier<ApprovalsState> {
       // 5. Elena Rodriguez (From Stitch Dark Screen d96c040e831d407685a8cbc4f5841e20)
       ApprovalItem(
         id: 'appr-05',
-        transactionId: 'txn-101',
+        transactionId: 'txn-107',
         employeeName: 'Elena Rodriguez',
         employeeRole: 'Product Operations Manager',
         merchant: 'Client Dinner Bistro',

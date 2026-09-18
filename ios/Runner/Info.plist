@@ -7,7 +7,13 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Expense Guard</string>
+	<string>ExpenseGuard</string>
+	<key>NSCameraUsageDescription</key>
+	<string>ExpenseGuard needs camera access to capture receipt images for instant AI scanning and expense reporting.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>ExpenseGuard needs photo library access to upload existing receipt images and documents.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>ExpenseGuard needs microphone access if video receipt capture is used.</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

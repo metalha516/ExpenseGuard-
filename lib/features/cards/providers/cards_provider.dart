@@ -10,11 +10,13 @@ class CardsState {
     required this.cards,
     this.selectedCardIndex = 0,
     required this.transactions,
+    this.isLoading = false,
   });
 
   final List<CorporateCard> cards;
   final int selectedCardIndex;
   final List<Transaction> transactions;
+  final bool isLoading;
 
   /// The currently active card in the carousel.
   CorporateCard get selectedCard =>
@@ -37,11 +39,13 @@ class CardsState {
     List<CorporateCard>? cards,
     int? selectedCardIndex,
     List<Transaction>? transactions,
+    bool? isLoading,
   }) {
     return CardsState(
       cards: cards ?? this.cards,
       selectedCardIndex: selectedCardIndex ?? this.selectedCardIndex,
       transactions: transactions ?? this.transactions,
+      isLoading: isLoading ?? this.isLoading,
     );
   }
 
@@ -52,13 +56,15 @@ class CardsState {
           runtimeType == other.runtimeType &&
           listEquals(cards, other.cards) &&
           selectedCardIndex == other.selectedCardIndex &&
-          listEquals(transactions, other.transactions);
+          listEquals(transactions, other.transactions) &&
+          isLoading == other.isLoading;
 
   @override
   int get hashCode => Object.hash(
         Object.hashAll(cards),
         selectedCardIndex,
         Object.hashAll(transactions),
+        isLoading,
       );
 }
 

@@ -71,6 +71,7 @@ class InsightsState {
     required this.percentUnderBudget,
     this.selectedCategory,
     this.isDonutChart = true,
+    this.isLoading = false,
   });
 
   final TimeRange timeRange;
@@ -81,6 +82,7 @@ class InsightsState {
   final int percentUnderBudget;
   final String? selectedCategory;
   final bool isDonutChart;
+  final bool isLoading;
 
   InsightsState copyWith({
     TimeRange? timeRange,
@@ -92,6 +94,7 @@ class InsightsState {
     String? selectedCategory,
     bool clearSelectedCategory = false,
     bool? isDonutChart,
+    bool? isLoading,
   }) {
     return InsightsState(
       timeRange: timeRange ?? this.timeRange,
@@ -104,6 +107,7 @@ class InsightsState {
           ? null
           : (selectedCategory ?? this.selectedCategory),
       isDonutChart: isDonutChart ?? this.isDonutChart,
+      isLoading: isLoading ?? this.isLoading,
     );
   }
 
@@ -117,7 +121,8 @@ class InsightsState {
           budgetLimit == other.budgetLimit &&
           percentUnderBudget == other.percentUnderBudget &&
           selectedCategory == other.selectedCategory &&
-          isDonutChart == other.isDonutChart;
+          isDonutChart == other.isDonutChart &&
+          isLoading == other.isLoading;
 
   @override
   int get hashCode => Object.hash(
@@ -127,6 +132,7 @@ class InsightsState {
         percentUnderBudget,
         selectedCategory,
         isDonutChart,
+        isLoading,
       );
 }
 

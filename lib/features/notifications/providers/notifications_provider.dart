@@ -30,11 +30,13 @@ class NotificationsState {
     required this.items,
     this.selectedFilter = NotificationFilter.all,
     this.searchQuery = '',
+    this.isLoading = false,
   });
 
   final List<NotificationItem> items;
   final NotificationFilter selectedFilter;
   final String searchQuery;
+  final bool isLoading;
 
   /// Total count of unread notifications.
   int get unreadCount => items.where((item) => !item.isRead).length;
@@ -111,11 +113,13 @@ class NotificationsState {
     List<NotificationItem>? items,
     NotificationFilter? selectedFilter,
     String? searchQuery,
+    bool? isLoading,
   }) {
     return NotificationsState(
       items: items ?? this.items,
       selectedFilter: selectedFilter ?? this.selectedFilter,
       searchQuery: searchQuery ?? this.searchQuery,
+      isLoading: isLoading ?? this.isLoading,
     );
   }
 
@@ -126,13 +130,15 @@ class NotificationsState {
           runtimeType == other.runtimeType &&
           listEquals(items, other.items) &&
           selectedFilter == other.selectedFilter &&
-          searchQuery == other.searchQuery;
+          searchQuery == other.searchQuery &&
+          isLoading == other.isLoading;
 
   @override
   int get hashCode => Object.hash(
         Object.hashAll(items),
         selectedFilter,
         searchQuery,
+        isLoading,
       );
 }
 

@@ -1,29 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:expense_guard/main.dart';
 import 'package:expense_guard/core/theme/app_theme.dart';
 import 'package:expense_guard/core/router/scaffold_with_nav_bar.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   testWidgets('ExpenseGuardApp mounts and starts at /onboarding',
       (WidgetTester tester) async {
-    await tester.pumpWidget(const ProviderScope(child: ExpenseGuardApp()));
+    SharedPreferences.setMockInitialValues({});
+    await tester.pumpWidget(const ProviderScope(child: MyApp()));
     await tester.pumpAndSettle();
 
     // Verify initial route displays onboarding content
-    expect(find.text('Welcome to ExpenseGuard'), findsOneWidget);
-    expect(find.text('Get Started'), findsOneWidget);
-    expect(find.text('Sign In'), findsOneWidget);
+    expect(find.text('ExpenseGuard'), findsAtLeast(1));
+    expect(find.text('Smart Corporate Spending'), findsOneWidget);
+    expect(find.text('Next'), findsOneWidget);
+    expect(find.text('Skip'), findsOneWidget);
   });
 
   testWidgets('Navigating to /home displays bottom navigation bar',
       (WidgetTester tester) async {
-    await tester.pumpWidget(const ProviderScope(child: ExpenseGuardApp()));
+    SharedPreferences.setMockInitialValues({});
+    await tester.pumpWidget(const ProviderScope(child: MyApp()));
     await tester.pumpAndSettle();
 
-    // Tap Get Started button to navigate to /home
-    await tester.tap(find.text('Get Started'));
+    // Tap Skip button to navigate directly to /home
+    await tester.tap(find.text('Skip'));
     await tester.pumpAndSettle();
 
     // Verify Home Screen and Persistent Bottom Navigation Bar

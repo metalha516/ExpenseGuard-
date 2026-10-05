@@ -11,10 +11,17 @@ import 'package:expense_guard/features/expenses/providers/transaction_details_pr
 /// policy compliance verification badges, and approval status timeline.
 /// Based on Stitch Screen ID: 67810d7196af46408b024664185c9ffc ("Pastel Flat").
 class TransactionDetailScreen extends ConsumerWidget {
-  const TransactionDetailScreen({super.key, this.transactionId});
+  const TransactionDetailScreen({
+    super.key,
+    this.transactionId,
+    this.heroTag,
+  });
 
   /// The transaction ID passed via path parameter, query parameter, or extra.
   final String? transactionId;
+
+  /// Optional custom Hero tag for receipt flight transitions.
+  final String? heroTag;
 
   static const String defaultScreenId = '67810d7196af46408b024664185c9ffc';
 
@@ -214,68 +221,74 @@ class TransactionDetailScreen extends ConsumerWidget {
     AppPastelColors colors,
     TransactionDetails details,
   ) {
-    return Container(
-      key: const Key('receipt_thumbnail_container'),
-      decoration: BoxDecoration(
-        color: colors.cardSurface,
-        borderRadius: BorderRadius.circular(AppTheme.cardRadius),
-        border: Border.all(
-          color: colors.borderDark,
-          width: AppTheme.borderWidth,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: colors.borderDark.withValues(alpha: 0.10),
-            offset: const Offset(3, 4),
-            blurRadius: 0,
-          ),
-        ],
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: AspectRatio(
-        aspectRatio: 4 / 3,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            // Receipt Content
-            _buildReceiptMediaContent(colors, details),
-
-            // Tap Overlay for entire thumbnail
-            Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: () => _showReceiptZoomDialog(context, details),
-                child: const SizedBox.expand(),
-              ),
+    return Hero(
+      tag: heroTag ?? 'receipt_hero_${details.transaction.id}',
+      child: Material(
+        type: MaterialType.transparency,
+        child: Container(
+          key: const Key('receipt_thumbnail_container'),
+          decoration: BoxDecoration(
+            color: colors.cardSurface,
+            borderRadius: BorderRadius.circular(AppTheme.cardRadius),
+            border: Border.all(
+              color: colors.borderDark,
+              width: AppTheme.borderWidth,
             ),
+            boxShadow: [
+              BoxShadow(
+                color: colors.borderDark.withValues(alpha: 0.10),
+                offset: const Offset(3, 4),
+                blurRadius: 0,
+              ),
+            ],
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: AspectRatio(
+            aspectRatio: 4 / 3,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                // Receipt Content
+                _buildReceiptMediaContent(colors, details),
 
-            // Zoom In Badge Action (bottom-right)
-            Positioned(
-              bottom: 12,
-              right: 12,
-              child: InkWell(
-                key: const Key('receipt_zoom_button'),
-                onTap: () => _showReceiptZoomDialog(context, details),
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF1A1C1E).withValues(alpha: 0.85),
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white.withValues(alpha: 0.2),
-                      width: 1.0,
-                    ),
-                  ),
-                  child: const Icon(
-                    Icons.zoom_in_rounded,
-                    color: Colors.white,
-                    size: 20,
+                // Tap Overlay for entire thumbnail
+                Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () => _showReceiptZoomDialog(context, details),
+                    child: const SizedBox.expand(),
                   ),
                 ),
-              ),
+
+                // Zoom In Badge Action (bottom-right)
+                Positioned(
+                  bottom: 12,
+                  right: 12,
+                  child: InkWell(
+                    key: const Key('receipt_zoom_button'),
+                    onTap: () => _showReceiptZoomDialog(context, details),
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1A1C1E).withValues(alpha: 0.85),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.2),
+                          width: 1.0,
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.zoom_in_rounded,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

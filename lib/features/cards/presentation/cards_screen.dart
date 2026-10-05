@@ -5,6 +5,7 @@ import 'package:expense_guard/core/theme/app_theme.dart';
 import 'package:expense_guard/models/corporate_card.dart';
 import 'package:expense_guard/features/cards/providers/cards_provider.dart';
 import 'package:expense_guard/features/shared/presentation/skeleton_loader.dart';
+import 'package:expense_guard/features/shared/presentation/animations/pastel_tap_scale.dart';
 
 /// Screen displaying Corporate Cards carousel (Physical and Virtual),
 /// card freeze toggles, monthly budget limits, and card-specific transactions.
@@ -863,10 +864,9 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
         const SizedBox(height: 12),
 
         // 2. Adjust Limit Tile
-        InkWell(
+        PastelTapScale(
           key: const Key('card_limit_tile'),
           onTap: () => _showAdjustLimitDialog(context, card, notifier),
-          borderRadius: BorderRadius.circular(AppTheme.cardRadius),
           child: Container(
             decoration: BoxDecoration(
               color: colors.cardSurface,
@@ -920,10 +920,9 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
         const SizedBox(height: 12),
 
         // 3. Request New Card Button Tile
-        InkWell(
+        PastelTapScale(
           key: const Key('request_new_card_button'),
           onTap: () => _showRequestNewCardDialog(context, notifier),
-          borderRadius: BorderRadius.circular(AppTheme.cardRadius),
           child: Container(
             decoration: BoxDecoration(
               color: colors.cardSurface,

@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:expense_guard/core/theme/app_theme.dart';
 import 'package:expense_guard/features/insights/providers/insights_provider.dart';
 import 'package:expense_guard/features/shared/presentation/skeleton_loader.dart';
+import 'package:expense_guard/features/shared/presentation/animations/pastel_tap_scale.dart';
 
 /// Screen displaying Spend Insights with fl_chart donut/bar charts,
 /// time range filters (1W, 1M, 3M, YTD), and category expense breakdowns.
@@ -161,10 +162,10 @@ class _InsightsScreenState extends ConsumerState<InsightsScreen> {
             padding: EdgeInsets.only(
               right: range != TimeRange.values.last ? 8.0 : 0.0,
             ),
-            child: InkWell(
+            child: PastelTapScale(
               key: Key('time_range_${range.label}'),
+              scaleDown: 0.94,
               onTap: () => notifier.setTimeRange(range),
-              borderRadius: BorderRadius.circular(20),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 180),
                 padding: const EdgeInsets.symmetric(vertical: 10),

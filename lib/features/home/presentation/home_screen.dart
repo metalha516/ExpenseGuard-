@@ -7,6 +7,7 @@ import 'package:expense_guard/models/models.dart';
 import 'package:expense_guard/features/home/providers/home_provider.dart';
 import 'package:expense_guard/features/shared/providers/theme_provider.dart';
 import 'package:expense_guard/features/shared/presentation/skeleton_loader.dart';
+import 'package:expense_guard/features/shared/presentation/animations/pastel_tap_scale.dart';
 
 /// The Home Dashboard screen featuring spend metrics, quick actions, and recent transactions.
 class HomeScreen extends ConsumerWidget {
@@ -505,9 +506,8 @@ class _BentoButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.pastelColors;
 
-    return InkWell(
+    return PastelTapScale(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(AppTheme.cardRadius),
       child: Container(
         padding: const EdgeInsets.all(14.0),
         decoration: BoxDecoration(
@@ -607,9 +607,8 @@ class _TransactionItemCard extends StatelessWidget {
     final badgeColor = _getBadgeColor(context, transaction.category);
     final iconData = _getIconData(transaction.iconName);
 
-    return InkWell(
+    return PastelTapScale(
       onTap: () => context.push('/transaction-detail?id=${transaction.id}'),
-      borderRadius: BorderRadius.circular(AppTheme.cardRadius),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         decoration: BoxDecoration(
@@ -622,22 +621,28 @@ class _TransactionItemCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            // Icon Avatar
-            Container(
-              width: 44,
-              height: 44,
-              decoration: BoxDecoration(
-                color: badgeColor,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: colors.borderDark,
-                  width: 1.2,
+            // Icon Avatar with Hero Transition
+            Hero(
+              tag: 'receipt_hero_${transaction.id}',
+              child: Material(
+                type: MaterialType.transparency,
+                child: Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: badgeColor,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: colors.borderDark,
+                      width: 1.2,
+                    ),
+                  ),
+                  child: Icon(
+                    iconData,
+                    color: colors.borderDark,
+                    size: 22,
+                  ),
                 ),
-              ),
-              child: Icon(
-                iconData,
-                color: colors.borderDark,
-                size: 22,
               ),
             ),
             const SizedBox(width: 14),

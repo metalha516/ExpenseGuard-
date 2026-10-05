@@ -71,7 +71,7 @@ void main() {
     expect(find.text('Auto-capture OFF'), findsOneWidget);
   });
 
-  testWidgets('Tapping Shutter button captures receipt and navigates to Expense Review',
+  testWidgets('Tapping Shutter button captures receipt and passes imagePath to Expense Review',
       (WidgetTester tester) async {
     await tester.pumpWidget(const ProviderScope(child: MyApp()));
     await tester.pumpAndSettle();
@@ -88,9 +88,57 @@ void main() {
     await tester.tap(find.byKey(const Key('camera_shutter_button')));
     await tester.pumpAndSettle();
 
-    // Verify navigation to Expense Review Screen
+    // Verify navigation to Expense Review Screen with captured image badge
     expect(find.text('Expense Review'), findsOneWidget);
     expect(find.text('Review & Edit Details'), findsOneWidget);
+    expect(find.byKey(const Key('reviewed_receipt_image_badge')), findsOneWidget);
+    expect(find.textContaining('starbucks_receipt_capture.jpg'), findsOneWidget);
+  });
+
+  testWidgets('Tapping Gallery button passes picked imagePath to Expense Review',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const ProviderScope(child: MyApp()));
+    await tester.pumpAndSettle();
+
+    // Skip onboarding
+    await tester.tap(find.text('Skip'));
+    await tester.pumpAndSettle();
+
+    // Open Camera
+    await tester.tap(find.byKey(const Key('docked_camera_fab')));
+    await tester.pumpAndSettle();
+
+    // Tap Gallery Picker Button
+    await tester.tap(find.byKey(const Key('camera_gallery_picker_button')));
+    await tester.pumpAndSettle();
+
+    // Verify navigation with picked gallery image badge
+    expect(find.text('Expense Review'), findsOneWidget);
+    expect(find.byKey(const Key('reviewed_receipt_image_badge')), findsOneWidget);
+    expect(find.textContaining('picked_receipt_scan.jpg'), findsOneWidget);
+  });
+
+  testWidgets('App lifecycle state changes are handled gracefully without errors',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const ProviderScope(child: MyApp()));
+    await tester.pumpAndSettle();
+
+    // Skip onboarding and open camera
+    await tester.tap(find.text('Skip'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('docked_camera_fab')));
+    await tester.pumpAndSettle();
+
+    // Trigger app backgrounding (paused)
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    await tester.pump();
+
+    // Trigger app foregrounding (resumed)
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pump();
+
+    // Verify camera screen remains resilient and mounted
+    expect(find.byType(SubmitExpenseCameraScreen), findsOneWidget);
   });
 
   testWidgets('Tapping Close button dismisses camera viewfinder',

@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:expense_guard/main.dart';
 import 'package:expense_guard/features/home/presentation/main_shell.dart';
+import 'package:expense_guard/features/expenses/presentation/submit_expense_camera_screen.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -85,8 +86,8 @@ void main() {
     await tester.tap(find.byKey(const Key('docked_camera_fab')));
     await tester.pumpAndSettle();
 
-    // Verify navigation to Submit Expense screen
-    expect(find.text('Submit Expense'), findsOneWidget);
-    expect(find.text('Capture Receipt'), findsOneWidget);
+    // Verify navigation to Submit Expense camera screen
+    expect(find.byType(SubmitExpenseCameraScreen), findsOneWidget);
+    expect(find.text('Position receipt within the frame'), findsOneWidget);
   });
 }

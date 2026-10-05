@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:expense_guard/main.dart';
 import 'package:expense_guard/features/home/providers/home_provider.dart';
+import 'package:expense_guard/features/expenses/presentation/submit_expense_camera_screen.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -104,7 +105,7 @@ void main() {
       // 1. Tap Scan Receipt in Bento
       await tester.tap(find.byKey(const Key('bento_scan_receipt')));
       await tester.pumpAndSettle();
-      expect(find.text('Submit Expense'), findsOneWidget);
+      expect(find.byType(SubmitExpenseCameraScreen), findsOneWidget);
 
       // Go back
       final navigator = tester.state<NavigatorState>(find.byType(Navigator).last);

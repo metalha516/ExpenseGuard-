@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>ExpenseGuard - Transaction Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fff8f1",
+                        "tertiary-fixed-dim": "#71dba2",
+                        "surface-container-low": "#f9f3ec",
+                        "tertiary": "#00462a",
+                        "secondary-fixed": "#ffe08e",
+                        "on-secondary-container": "#735a00",
+                        "on-tertiary-fixed-variant": "#005232",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-container-highest": "#e7e2db",
+                        "inverse-on-surface": "#f6f0e9",
+                        "on-tertiary-fixed": "#002112",
+                        "surface-bright": "#fff8f1",
+                        "on-surface": "#1d1b17",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#fed255",
+                        "inverse-surface": "#32302c",
+                        "surface-tint": "#206a57",
+                        "inverse-primary": "#8ed4bd",
+                        "outline": "#6f7975",
+                        "tertiary-container": "#00603c",
+                        "secondary": "#755b00",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#f3ede6",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ecc246",
+                        "on-primary-fixed": "#002018",
+                        "tertiary-fixed": "#8df8bd",
+                        "surface-variant": "#e7e2db",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#584400",
+                        "primary": "#004536",
+                        "surface-container-high": "#ede7e0",
+                        "on-primary-fixed-variant": "#005140",
+                        "on-primary-container": "#8fd5be",
+                        "primary-container": "#0f5e4c",
+                        "primary-fixed-dim": "#8ed4bd",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#bfc9c3",
+                        "primary-fixed": "#aaf1d9",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1d1b17",
+                        "surface-dim": "#dfd9d2",
+                        "on-surface-variant": "#3f4945",
+                        "on-tertiary-container": "#72dca3",
+                        "surface": "#fff8f1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-gap": "16px",
+                        "safe-area-bottom": "34px",
+                        "gutter-mobile": "12px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-currency": ["Inter"],
+                        "label-md": ["Inter"],
+                        "metadata": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["17px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "26px", "fontWeight": "600" }],
+                        "display-currency": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "metadata": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.filled { font-variation-settings: 'FILL' 1; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased pb-safe-area-bottom selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top App Bar -->
+<header class="sticky top-0 w-full z-40 bg-background dark:bg-background flex justify-between items-center px-margin-mobile py-4 shadow-sm transition-shadow duration-300" id="top-bar">
+<!-- Back Button for transactional departure -->
+<button class="p-2 -ml-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex-1 text-center">
+<span class="font-headline-md text-headline-md text-primary">Transaction Detail</span>
+</div>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-margin-mobile pt-4 pb-[100px] flex flex-col gap-stack-gap max-w-md mx-auto w-full">
+<!-- Status Pill -->
+<div class="flex justify-center mb-2">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-container/10 border border-tertiary-container/20 text-tertiary-container">
+<span class="material-symbols-outlined filled text-[14px]">check_circle</span>
+<span class="font-label-md text-label-md">Auto-cleared</span>
+</div>
+</div>
+<!-- Receipt Image Container -->
+<div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-[0px_4px_12px_rgba(31,29,25,0.05)] border border-surface-variant bg-surface-container-lowest group cursor-zoom-in">
+<img alt="Receipt image" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A clear, high-resolution top-down photograph of a modern, neatly printed restaurant receipt resting on a smooth, warm wooden table. The lighting is bright and even, casting soft shadows, fitting a premium, clean editorial aesthetic. Subtle botanical elements are out of focus in the background to provide a sense of calm warmth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYiZ08gT4bO5CeWtWi20LqBoJMZ9rvS1MBwdTug6g-FPIQxayXtA3daOBLDNeOMOxzkte6-9mwwn1w6bnC5nPJRsl1iun-Htsb7CTDj4qPXcFwjiXE5v_tgEc2bAYzaDH8MrH5dhmzM__hILQA8pGGg5Sc74n4CRMKlLNlo30cTwyJubqVIpNwXEXehAqBZ1rNDh1lphuoCAq_Q5SkPVXCM3PnGYAxl_Fco-c43B4HTXUjaMXJDceU"/>
+<div class="absolute bottom-3 right-3 bg-inverse-surface/80 backdrop-blur-sm text-inverse-on-surface rounded-full p-2 flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-[18px]">zoom_in</span>
+</div>
+</div>
+<!-- Transaction Details Card -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0px_4px_12px_rgba(31,29,25,0.05)] border border-outline-variant/20 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface">Blue Bottle Coffee</span>
+<span class="font-metadata text-metadata text-on-surface-variant mt-1">Oct 24, 2023 • 08:42 AM</span>
+</div>
+<div class="text-right">
+<span class="font-headline-md text-headline-md text-on-surface">$12.50</span>
+<span class="block font-metadata text-metadata text-on-surface-variant mt-1">Food &amp; Beverage</span>
+</div>
+</div>
+</div>
+<!-- Policy Check Section (Bento style) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[0px_4px_12px_rgba(31,29,25,0.05)] border border-outline-variant/20 overflow-hidden flex flex-col">
+<div class="px-4 py-3 bg-surface-container-low border-b border-outline-variant/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">policy</span>
+<h3 class="font-headline-md text-headline-md text-on-surface text-[16px] leading-[22px]">Policy Check</h3>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<!-- Checklist -->
+<ul class="flex flex-col gap-3">
+<li class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-tertiary-container/10 flex items-center justify-center text-tertiary-container shrink-0">
+<span class="material-symbols-outlined text-[14px] filled">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface">Receipt detected</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-tertiary-container/10 flex items-center justify-center text-tertiary-container shrink-0">
+<span class="material-symbols-outlined text-[14px] filled">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface">Under $50 threshold</span>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-6 h-6 rounded-full bg-tertiary-container/10 flex items-center justify-center text-tertiary-container shrink-0">
+<span class="material-symbols-outlined text-[14px] filled">check</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface">Approved vendor</span>
+</li>
+</ul>
+<!-- Plain language explanation -->
+<div class="mt-2 p-3 bg-tertiary-container/5 rounded-lg border border-tertiary-container/10">
+<p class="font-body-md text-body-md text-on-surface-variant text-[14px] leading-relaxed">
+                        Everything looks good. This transaction matches your team's travel policy and has been cleared automatically.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Suppressed Navigation Shell -->
+<!-- As per instructions: "Automatic Suppression: You MUST exclude the navigation shell if the page intent is Task-Focused: Any sub-page featuring a "Close" or "Back" action that implies a temporary departure from the main navigation flow." -->
+<!-- This is a "Transaction Detail" screen with a back button, meaning it's a sub-page/departure from flow. -->
+<script>
+        // Simple top bar shadow on scroll
+        const topBar = document.getElementById('top-bar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                topBar.classList.add('shadow-md');
+                topBar.classList.remove('shadow-sm');
+            } else {
+                topBar.classList.remove('shadow-md');
+                topBar.classList.add('shadow-sm');
+            }
+        });
+    </script>
+</body></html>

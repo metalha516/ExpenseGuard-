@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>ExpenseGuard - Spend Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fff8f1",
+                        "tertiary-fixed-dim": "#71dba2",
+                        "surface-container-low": "#f9f3ec",
+                        "tertiary": "#00462a",
+                        "secondary-fixed": "#ffe08e",
+                        "on-secondary-container": "#735a00",
+                        "on-tertiary-fixed-variant": "#005232",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-container-highest": "#e7e2db",
+                        "inverse-on-surface": "#f6f0e9",
+                        "on-tertiary-fixed": "#002112",
+                        "surface-bright": "#fff8f1",
+                        "on-surface": "#1d1b17",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#fed255",
+                        "inverse-surface": "#32302c",
+                        "surface-tint": "#206a57",
+                        "inverse-primary": "#8ed4bd",
+                        "outline": "#6f7975",
+                        "tertiary-container": "#00603c",
+                        "secondary": "#755b00",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#f3ede6",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ecc246",
+                        "on-primary-fixed": "#002018",
+                        "tertiary-fixed": "#8df8bd",
+                        "surface-variant": "#e7e2db",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#584400",
+                        "primary": "#004536",
+                        "surface-container-high": "#ede7e0",
+                        "on-primary-fixed-variant": "#005140",
+                        "on-primary-container": "#8fd5be",
+                        "primary-container": "#0f5e4c",
+                        "primary-fixed-dim": "#8ed4bd",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#bfc9c3",
+                        "primary-fixed": "#aaf1d9",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1d1b17",
+                        "surface-dim": "#dfd9d2",
+                        "on-surface-variant": "#3f4945",
+                        "on-tertiary-container": "#72dca3",
+                        "surface": "#fff8f1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-gap": "16px",
+                        "safe-area-bottom": "34px",
+                        "gutter-mobile": "12px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-currency": ["Inter"],
+                        "label-md": ["Inter"],
+                        "metadata": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["17px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "26px", "fontWeight": "600" }],
+                        "display-currency": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "metadata": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { -webkit-tap-highlight-color: transparent; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-fill { font-variation-settings: 'FILL' 1; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased pb-safe-area-bottom">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-40 bg-background dark:bg-background flex justify-between items-center px-margin-mobile py-4 transition-transform">
+<div class="flex items-center gap-3">
+<img alt="User profile photo" class="w-10 h-10 rounded-full object-cover shadow-sm bg-surface-container-highest" data-alt="A small, professional headshot of a business user smiling warmly. The photo is well-lit with soft natural light, set against a clean, out-of-focus office background. The overall tone is approachable, trustworthy, and polished, fitting a premium corporate financial app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtax60y4UapA0MQlhW-9hMHv-WnbhF5361kcXUYDaSC4fMwLnXbNYDpuvHEmPTd35FmJ8Dr46UqC8bTFrDfZgtBjBsD87tcKys2pUsddeHDQemfEB7saRHQhlLlX9YWZkpRqloOEpnJx2HFAFnPE7QuT96w9HnV42nJM7PZpwgrTCkjpEHcr3UCMNgNGZqWYBgTQ6dXzweU4b8n8MLwWPFchQU6rUOMTU9ZlTEK550ZtF7Rf0mGeVQ"/>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed tracking-tight">ExpenseGuard</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-primary dark:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-surface-container-highest rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined text-2xl">notifications</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col px-margin-mobile pt-4 pb-24 gap-stack-gap overflow-x-hidden">
+<!-- Header & Encouragement -->
+<div class="flex flex-col gap-2 mb-2">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Spend Insights</h1>
+<div class="bg-primary-container/10 border border-primary-container/20 rounded-xl p-4 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container icon-fill mt-0.5">trending_down</span>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    You're <span class="font-bold text-primary-container">12% under budget</span> this month. Keep it up! 👏
+                </p>
+</div>
+</div>
+<!-- Swipeable Charts Section -->
+<div class="w-full relative -mx-margin-mobile px-margin-mobile">
+<div class="flex gap-4 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-4">
+<!-- Card 1: Spend by Category -->
+<div class="snap-center shrink-0 w-[85vw] md:w-[400px] bg-surface-container-lowest rounded-[24px] p-6 shadow-[0px_4px_12px_rgba(31,29,25,0.05)] border border-outline-variant/30 flex flex-col gap-6">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-on-surface">Spend by Category</h2>
+<span class="material-symbols-outlined text-on-surface-variant text-xl">pie_chart</span>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Travel -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-sm">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span> Travel
+                                </span>
+<span class="font-metadata text-metadata text-on-surface font-semibold">$3,450</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<!-- Meals -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-sm">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> Meals
+                                </span>
+<span class="font-metadata text-metadata text-on-surface font-semibold">$1,200</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 25%"></div>
+</div>
+</div>
+<!-- Software -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between text-sm">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary-container"></span> Software
+                                </span>
+<span class="font-metadata text-metadata text-on-surface font-semibold">$450</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary-container h-full rounded-full" style="width: 10%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Month-over-month Trend -->
+<div class="snap-center shrink-0 w-[85vw] md:w-[400px] bg-surface-container-lowest rounded-[24px] p-6 shadow-[0px_4px_12px_rgba(31,29,25,0.05)] border border-outline-variant/30 flex flex-col gap-6 relative overflow-hidden">
+<div class="flex justify-between items-center z-10">
+<h2 class="font-headline-md text-headline-md text-on-surface">M-o-M Trend</h2>
+<span class="material-symbols-outlined text-on-surface-variant text-xl">show_chart</span>
+</div>
+<div class="flex-1 flex items-end relative h-[150px] z-10">
+<!-- Simplified Line Chart Visual -->
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 50">
+<path class="text-primary-container" d="M0,45 C20,40 30,25 50,30 C70,35 85,15 100,5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<circle class="text-primary-container" cx="0" cy="45" fill="currentColor" r="2"></circle>
+<circle class="text-primary-container" cx="50" cy="30" fill="currentColor" r="2"></circle>
+<circle class="text-primary-container" cx="100" cy="5" fill="currentColor" r="3"></circle>
+<!-- Area under curve -->
+<path d="M0,45 C20,40 30,25 50,30 C70,35 85,15 100,5 L100,50 L0,50 Z" fill="url(#gradientChart)" opacity="0.1"></path>
+<defs>
+<lineargradient id="gradientChart" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#0F5E4C"></stop>
+<stop offset="100%" stop-color="#fff8f1"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Axis Labels -->
+<div class="absolute bottom-[-24px] left-0 right-0 flex justify-between font-metadata text-metadata text-on-surface-variant">
+<span>Sep</span>
+<span>Oct</span>
+<span class="text-primary-container font-semibold">Nov</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-xl border-t border-outline-variant/30 shadow-[0px_-4px_12px_rgba(31,29,25,0.05)] md:hidden">
+<div class="flex justify-around items-center px-margin-mobile pt-3 pb-safe-area-bottom w-full">
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-150 gap-1">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-150 gap-1">
+<span class="material-symbols-outlined text-2xl">add_circle</span>
+<span class="font-label-md text-label-md">Submit</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-semibold hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-150 gap-1">
+<span class="material-symbols-outlined text-2xl icon-fill">credit_card</span>
+<span class="font-label-md text-label-md">Cards</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-150 gap-1">
+<span class="material-symbols-outlined text-2xl">rule</span>
+<span class="font-label-md text-label-md">Approvals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-150 gap-1">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</button>
+</div>
+</nav>
+</body></html>

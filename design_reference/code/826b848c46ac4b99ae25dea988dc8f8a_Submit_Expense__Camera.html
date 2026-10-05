@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>ExpenseGuard - Submit</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fff8f1",
+                        "tertiary-fixed-dim": "#71dba2",
+                        "surface-container-low": "#f9f3ec",
+                        "tertiary": "#00462a",
+                        "secondary-fixed": "#ffe08e",
+                        "on-secondary-container": "#735a00",
+                        "on-tertiary-fixed-variant": "#005232",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-container-highest": "#e7e2db",
+                        "inverse-on-surface": "#f6f0e9",
+                        "on-tertiary-fixed": "#002112",
+                        "surface-bright": "#fff8f1",
+                        "on-surface": "#1d1b17",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#fed255",
+                        "inverse-surface": "#32302c",
+                        "surface-tint": "#206a57",
+                        "inverse-primary": "#8ed4bd",
+                        "outline": "#6f7975",
+                        "tertiary-container": "#00603c",
+                        "secondary": "#755b00",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#f3ede6",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ecc246",
+                        "on-primary-fixed": "#002018",
+                        "tertiary-fixed": "#8df8bd",
+                        "surface-variant": "#e7e2db",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#584400",
+                        "primary": "#004536",
+                        "surface-container-high": "#ede7e0",
+                        "on-primary-fixed-variant": "#005140",
+                        "on-primary-container": "#8fd5be",
+                        "primary-container": "#0f5e4c",
+                        "primary-fixed-dim": "#8ed4bd",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#bfc9c3",
+                        "primary-fixed": "#aaf1d9",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1d1b17",
+                        "surface-dim": "#dfd9d2",
+                        "on-surface-variant": "#3f4945",
+                        "on-tertiary-container": "#72dca3",
+                        "surface": "#fff8f1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-gap": "16px",
+                        "safe-area-bottom": "34px",
+                        "gutter-mobile": "12px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-currency": ["Inter"],
+                        "label-md": ["Inter"],
+                        "metadata": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["17px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "26px", "fontWeight": "600" }],
+                        "display-currency": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "metadata": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .camera-overlay {
+            background: radial-gradient(circle at center, transparent 30%, rgba(31, 29, 25, 0.4) 100%);
+        }
+        
+        .corner-marker {
+            width: 32px;
+            height: 32px;
+            border-color: #0f5e4c; /* primary-container */
+            border-style: solid;
+            position: absolute;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .scanning-pulse .corner-marker {
+            animation: pulse-corners 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-corners {
+            0% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.05); opacity: 1; border-color: #8ed4bd; } /* primary-fixed-dim */
+            100% { transform: scale(1); opacity: 0.6; }
+        }
+
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(142, 212, 189, 0.8), transparent);
+            box-shadow: 0 0 10px rgba(142, 212, 189, 0.5);
+            animation: scan-vertical 3s infinite linear;
+            opacity: 0;
+        }
+
+        .scanning-active .scan-line {
+            opacity: 1;
+        }
+
+        @keyframes scan-vertical {
+            0% { top: 10%; }
+            100% { top: 90%; }
+        }
+
+        /* Hide Top/Bottom Navs on this specific screen to prioritize camera canvas */
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-inverse-surface h-full w-full overflow-hidden flex flex-col font-body-md text-body-md text-on-surface">
+<!-- Camera Viewfinder Container -->
+<main class="relative flex-grow flex flex-col bg-black">
+<!-- Mock Camera Feed Background -->
+<div class="absolute inset-0 z-0">
+<img alt="Camera Feed" class="w-full h-full object-cover opacity-80" data-alt="A close-up, slightly blurred view of a crumpled paper receipt resting on a dark wooden cafe table. Warm overhead ambient lighting softly illuminates the scene, hinting at a modern, premium financial app context. The colors are muted, focusing on the texture of the receipt and the dark wood grain." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuN5JhA1Ws-0laiulqL-g0FPwwgrRxY3oiuariN84H0dRJnvslKK17xm0CpBx0DOMPvcCWpqC0PRztLID645Zz12sgrkvGJSlHkpwEM832c2K4rzpDwHdvKiStdbY3kVjAwc4Eo_nfIk6aUjsr_rF6NOqdf4cxw47LWiNKNp7nXvvmd-2EzfgI2HML2p9-tMphwiuONqmTZoauX41g217PZIxXzf7xF1fdkpl3V3blqsiqJm743BhM"/>
+</div>
+<!-- Gradient Overlay for Contrast -->
+<div class="absolute inset-0 z-10 camera-overlay pointer-events-none"></div>
+<!-- Top Controls -->
+<div class="relative z-20 flex justify-between items-center px-margin-mobile pt-safe-area-top mt-4 w-full">
+<button class="w-11 h-11 rounded-full bg-surface-container-highest/20 backdrop-blur-md flex items-center justify-center text-on-primary hover:bg-surface-container-highest/40 transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+</button>
+<div class="bg-surface-container-highest/20 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></span>
+<span class="font-label-md text-label-md text-on-primary">Auto-capture</span>
+</div>
+<button class="w-11 h-11 rounded-full bg-surface-container-highest/20 backdrop-blur-md flex items-center justify-center text-on-primary hover:bg-surface-container-highest/40 transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">flash_on</span>
+</button>
+</div>
+<!-- Instructional Text -->
+<div class="relative z-20 text-center mt-8 px-margin-mobile">
+<p class="font-body-lg text-body-lg text-on-primary drop-shadow-md font-medium">Position receipt within the frame</p>
+</div>
+<!-- Viewfinder Reticle / Edge Detection Area -->
+<div class="relative z-20 flex-grow flex items-center justify-center p-8 scanning-pulse scanning-active">
+<div class="relative w-full max-w-sm aspect-[3/4] border border-outline-variant/30 rounded-xl overflow-hidden backdrop-blur-[2px]">
+<!-- Corner Markers -->
+<div class="corner-marker top-0 left-0 border-t-4 border-l-4 rounded-tl-xl"></div>
+<div class="corner-marker top-0 right-0 border-t-4 border-r-4 rounded-tr-xl"></div>
+<div class="corner-marker bottom-0 left-0 border-b-4 border-l-4 rounded-bl-xl"></div>
+<div class="corner-marker bottom-0 right-0 border-b-4 border-r-4 rounded-br-xl"></div>
+<!-- Animated Scan Line -->
+<div class="scan-line"></div>
+<!-- Guidance Grid (Subtle) -->
+<div class="absolute inset-0 grid grid-cols-3 grid-rows-3 pointer-events-none">
+<div class="border-r border-b border-on-primary/10"></div>
+<div class="border-r border-b border-on-primary/10"></div>
+<div class="border-b border-on-primary/10"></div>
+<div class="border-r border-b border-on-primary/10"></div>
+<div class="border-r border-b border-on-primary/10"></div>
+<div class="border-b border-on-primary/10"></div>
+<div class="border-r border-on-primary/10"></div>
+<div class="border-r border-on-primary/10"></div>
+<div></div>
+</div>
+</div>
+</div>
+<!-- Bottom Controls -->
+<div class="relative z-20 pb-safe-area-bottom pt-6 px-margin-mobile bg-gradient-to-t from-black/80 to-transparent flex flex-col items-center gap-6">
+<!-- Quick Gallery / Manual Entry row -->
+<div class="flex justify-between w-full items-center px-4">
+<button class="flex flex-col items-center gap-1 text-on-primary/80 hover:text-on-primary transition-colors">
+<div class="w-10 h-10 rounded-lg overflow-hidden border border-outline-variant/50">
+<img alt="Gallery" class="w-full h-full object-cover" data-alt="A small thumbnail showing a neatly organized grid of recent photos, primarily depicting white paper receipts against various backgrounds. The lighting is soft and consistent, reflecting a clean, modern digital interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW6EjM6PB9SYZeYJ0pQZn4AwMtb5XE5C6xkRViMe9aArdUGP6KnCSTF1Xh7Wk8-jHWMvPW-QJmgAyfuFUxugnoHEbFcbOq2Ko6NneJfdgWDu1UhXJ5yvmZwGV_Cd_JPhvVjK5KQdBA95c5WBmjgofoiGehSro77qDmtnZbdRM-sVvsyPUg5JGSpduKNLG4IpA0TgqH6b6vYCERHcM6j-ZsJQO65s36bKNN8-CQhm7g924djY46-87Z"/>
+</div>
+</button>
+<!-- Main Shutter Button -->
+<button class="relative group w-20 h-20 rounded-full border-4 border-primary-fixed-dim/50 flex items-center justify-center transition-transform hover:scale-95 active:scale-90">
+<div class="w-[68px] h-[68px] rounded-full bg-primary-container shadow-[0px_4px_12px_rgba(31,29,25,0.2)] flex items-center justify-center group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-on-primary text-3xl" style="font-variation-settings: 'FILL' 1;">photo_camera</span>
+</div>
+<div class="absolute inset-0 rounded-full border border-primary-fixed animate-ping opacity-20"></div>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-primary/80 hover:text-on-primary transition-colors">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest/20 flex items-center justify-center backdrop-blur-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">edit_document</span>
+</div>
+</button>
+</div>
+<!-- Tab Selector -->
+<div class="flex gap-4 bg-surface-container-highest/20 backdrop-blur-md p-1 rounded-full">
+<button class="px-6 py-2 rounded-full bg-surface text-on-surface font-label-md text-label-md shadow-sm">
+                    Receipt
+                </button>
+<button class="px-6 py-2 rounded-full text-on-primary font-label-md text-label-md hover:bg-surface-container-highest/30 transition-colors">
+                    Multiple
+                </button>
+</div>
+</div>
+</main>
+<!-- Suppressed BottomNavBar for Transactional Flow (as per protocol) -->
+</body></html>

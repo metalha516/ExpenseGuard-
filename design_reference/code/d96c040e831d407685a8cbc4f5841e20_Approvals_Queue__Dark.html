@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ExpenseGuard - Approvals</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#121212", // Overriding for deep charcoal-navy vibe in dark mode as requested, standard config is lighter
+                        "tertiary-fixed-dim": "#71dba2",
+                        "surface-container-low": "#1e1e1e",
+                        "tertiary": "#00462a",
+                        "secondary-fixed": "#ffe08e",
+                        "on-secondary-container": "#735a00",
+                        "on-tertiary-fixed-variant": "#005232",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-container-highest": "#32302c",
+                        "inverse-on-surface": "#f6f0e9",
+                        "on-tertiary-fixed": "#002112",
+                        "surface-bright": "#32302c",
+                        "on-surface": "#e7e2db",
+                        "error": "#ffb4ab",
+                        "secondary-container": "#fed255",
+                        "inverse-surface": "#e7e2db",
+                        "surface-tint": "#8ed4bd",
+                        "inverse-primary": "#004536",
+                        "outline": "#8f9995",
+                        "tertiary-container": "#00603c",
+                        "secondary": "#ecc246",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#2a2825",
+                        "on-secondary": "#3e2e00",
+                        "secondary-fixed-dim": "#ecc246",
+                        "on-primary-fixed": "#002018",
+                        "tertiary-fixed": "#8df8bd",
+                        "surface-variant": "#49454f",
+                        "surface-container-lowest": "#000000",
+                        "on-secondary-fixed-variant": "#584400",
+                        "primary": "#8ed4bd",
+                        "surface-container-high": "#32302c",
+                        "on-primary-fixed-variant": "#005140",
+                        "on-primary-container": "#8fd5be",
+                        "primary-container": "#0f5e4c",
+                        "primary-fixed-dim": "#8ed4bd",
+                        "on-error": "#690005",
+                        "on-primary": "#00382b",
+                        "outline-variant": "#bfc9c3",
+                        "primary-fixed": "#aaf1d9",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#e7e2db",
+                        "surface-dim": "#121212",
+                        "on-surface-variant": "#cac4cf",
+                        "on-tertiary-container": "#72dca3",
+                        "surface": "#121212"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-gap": "16px",
+                        "safe-area-bottom": "34px",
+                        "gutter-mobile": "12px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-currency": ["Inter"],
+                        "label-md": ["Inter"],
+                        "metadata": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["17px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "26px", "fontWeight": "600" }],
+                        "display-currency": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "metadata": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom scrollbar for dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121212; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #32302c; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #49454f; 
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased pb-safe-area-bottom min-h-screen flex flex-col">
+<!-- TopAppBar Component -->
+<header class="sticky top-0 w-full z-40 bg-background flex justify-between items-center px-margin-mobile py-4 w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden shrink-0 border border-surface-container-highest">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A close-up portrait of a professional manager with a friendly yet serious expression, warmly lit in a modern office setting. The background is slightly blurred with subtle hints of indoor plants and deep charcoal architectural elements, conveying a premium corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8lDOJingvro1HSmkgyQGUx5I57jyFUKw0SUVuAfbpIDN9LaqhpGgQjr5NTYrVP-khK1PebA__8yy2OaZZN2OyIFgazZRcDizO8IAstAY6c85Q7pj0V0vECAqx64wafGzPB-Kz744Piy0dJhLmAr10Qu5u7bNvY3nU5hXkpxR6JdT_rWSs66uGoOMhFXc2dI-auM93aROsMGf1KF6ZHVZ6oIRZHS7ofBEBaTyKTxlUzSkb4cU6XD02"/>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary font-bold tracking-tight">ExpenseGuard</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow px-margin-mobile py-4 flex flex-col gap-6 pb-24">
+<!-- Dashboard Summary -->
+<section class="flex flex-col gap-2">
+<h2 class="font-headline-lg text-headline-lg text-on-background">Pending Approvals</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">You have 12 items requiring your attention.</p>
+</section>
+<!-- Risk Grouping: High Risk -->
+<section class="flex flex-col gap-stack-gap">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error icon-filled text-[18px]">warning</span>
+<h3 class="font-label-md text-label-md text-error uppercase tracking-wider">High Risk / Out of Policy</h3>
+</div>
+<div class="flex flex-col gap-3 relative">
+<!-- Swipeable Card Container 1 -->
+<div class="relative bg-surface-container-low rounded-xl overflow-hidden shadow-[0px_4px_12px_rgba(0,0,0,0.5)] border border-error/20">
+<!-- Background Actions (Behind Card) -->
+<div class="absolute inset-0 flex justify-between items-center px-6">
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">check_circle</span>
+<span class="font-metadata text-metadata">Approve</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-error">
+<span class="material-symbols-outlined">cancel</span>
+<span class="font-metadata text-metadata">Reject</span>
+</div>
+</div>
+<!-- Foreground Card Content -->
+<div class="relative bg-surface-container-low p-4 z-10 flex flex-col gap-3 transition-transform translate-x-0 active:scale-[0.98]">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant">flight</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-background">Delta Airlines</span>
+<span class="font-metadata text-metadata text-on-surface-variant">Sarah Jenkins • Oct 24</span>
+</div>
+</div>
+<span class="font-headline-md text-headline-md text-on-background">$1,245.00</span>
+</div>
+<div class="bg-error/10 border border-error/20 rounded-lg p-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[16px]">policy</span>
+<span class="font-metadata text-metadata text-error">Exceeds airfare budget by 24%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Risk Grouping: Standard -->
+<section class="flex flex-col gap-stack-gap mt-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed-dim icon-filled text-[18px]">verified_user</span>
+<h3 class="font-label-md text-label-md text-primary-fixed-dim uppercase tracking-wider">Standard Approvals</h3>
+</div>
+<div class="flex flex-col gap-3 relative">
+<!-- Stacked Cards Effect for multiple items -->
+<div class="relative">
+<!-- Background Card (visual depth) -->
+<div class="absolute top-2 left-2 right-2 h-full bg-surface-container-highest rounded-xl opacity-50 z-0 border border-surface-variant/30"></div>
+<!-- Foreground Card Content 2 -->
+<div class="relative bg-surface-container-low p-4 rounded-xl z-10 flex flex-col gap-3 shadow-[0px_4px_12px_rgba(0,0,0,0.3)] border border-surface-variant/20 active:scale-[0.98] transition-transform">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant">hotel</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-background">Marriott</span>
+<span class="font-metadata text-metadata text-on-surface-variant">David Kim • Oct 22</span>
+</div>
+</div>
+<span class="font-headline-md text-headline-md text-on-background">$850.00</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="px-2 py-1 rounded-full bg-primary/10 text-primary font-metadata text-metadata border border-primary/20 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">receipt_long</span> Receipt attached
+                            </div>
+</div>
+</div>
+</div>
+<div class="relative bg-surface-container-low p-4 rounded-xl z-10 flex flex-col gap-3 shadow-[0px_4px_12px_rgba(0,0,0,0.3)] border border-surface-variant/20 active:scale-[0.98] transition-transform mt-2">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant">restaurant</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-background">Client Dinner</span>
+<span class="font-metadata text-metadata text-on-surface-variant">Elena Rodriguez • Oct 21</span>
+</div>
+</div>
+<span class="font-headline-md text-headline-md text-on-background">$245.50</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Component -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-xl border-t border-outline-variant/30 shadow-[0px_-4px_12px_rgba(31,29,25,0.05)] flex justify-around items-center px-margin-mobile pt-3 pb-safe-area-bottom w-full hidden md:hidden flex">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-label-md text-label-md mt-1">Submit</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="credit_card">credit_card</span>
+<span class="font-label-md text-label-md mt-1">Cards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-semibold hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined icon-filled" data-icon="rule" data-weight="fill" style="font-variation-settings: 'FILL' 1;">rule</span>
+<span class="font-label-md text-label-md mt-1">Approvals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md mt-1">Profile</span>
+</a>
+</nav>
+<!-- Desktop Navigation Overlay (Hidden on Mobile) -->
+<nav class="hidden md:flex fixed top-0 left-0 h-screen w-64 bg-surface-container border-r border-outline-variant/30 flex-col py-8 px-4 z-50">
+<div class="mb-12 px-4">
+<h1 class="font-headline-md text-headline-md text-primary font-bold">ExpenseGuard</h1>
+</div>
+<div class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-label-md text-label-md">Submit</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="credit_card">credit_card</span>
+<span class="font-label-md text-label-md">Cards</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary-container text-on-primary-container font-semibold transition-colors" href="#">
+<span class="material-symbols-outlined icon-filled" data-icon="rule" data-weight="fill" style="font-variation-settings: 'FILL' 1;">rule</span>
+<span class="font-label-md text-label-md">Approvals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

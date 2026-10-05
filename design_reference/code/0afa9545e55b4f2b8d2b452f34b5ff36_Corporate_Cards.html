@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>ExpenseGuard - Cards</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fff8f1",
+                        "tertiary-fixed-dim": "#71dba2",
+                        "surface-container-low": "#f9f3ec",
+                        "tertiary": "#00462a",
+                        "secondary-fixed": "#ffe08e",
+                        "on-secondary-container": "#735a00",
+                        "on-tertiary-fixed-variant": "#005232",
+                        "on-secondary-fixed": "#241a00",
+                        "surface-container-highest": "#e7e2db",
+                        "inverse-on-surface": "#f6f0e9",
+                        "on-tertiary-fixed": "#002112",
+                        "surface-bright": "#fff8f1",
+                        "on-surface": "#1d1b17",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#fed255",
+                        "inverse-surface": "#32302c",
+                        "surface-tint": "#206a57",
+                        "inverse-primary": "#8ed4bd",
+                        "outline": "#6f7975",
+                        "tertiary-container": "#00603c",
+                        "secondary": "#755b00",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#f3ede6",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#ecc246",
+                        "on-primary-fixed": "#002018",
+                        "tertiary-fixed": "#8df8bd",
+                        "surface-variant": "#e7e2db",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#584400",
+                        "primary": "#004536",
+                        "surface-container-high": "#ede7e0",
+                        "on-primary-fixed-variant": "#005140",
+                        "on-primary-container": "#8fd5be",
+                        "primary-container": "#0f5e4c",
+                        "primary-fixed-dim": "#8ed4bd",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#bfc9c3",
+                        "primary-fixed": "#aaf1d9",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "on-background": "#1d1b17",
+                        "surface-dim": "#dfd9d2",
+                        "on-surface-variant": "#3f4945",
+                        "on-tertiary-container": "#72dca3",
+                        "surface": "#fff8f1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "4xl": "2rem"
+                    },
+                    "spacing": {
+                        "stack-gap": "16px",
+                        "safe-area-bottom": "34px",
+                        "gutter-mobile": "12px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-currency": ["Inter"],
+                        "label-md": ["Inter"],
+                        "metadata": ["Inter"],
+                        "headline-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["17px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "26px", "fontWeight": "600" }],
+                        "display-currency": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "metadata": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom Gradient for Cards */
+        .card-gradient {
+            background: linear-gradient(135deg, #0F5E4C 0%, #004536 50%, #C9A227 100%);
+        }
+        
+        /* Smooth Toggle Switch Transition */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #0F5E4C;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #0F5E4C;
+        }
+        
+        /* Hide scrollbar for clean horizontal scrolling */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-safe-area-bottom">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-40 bg-background dark:bg-background">
+<div class="flex justify-between items-center px-margin-mobile py-4 w-full max-w-md mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/30 shrink-0">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate employee in a light, bright office environment. The image is warm, well-lit, and conveys a sense of reliability and modern corporate culture, aligning with the warm editorial enterprise mobile aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYUFiwFfhg3QOv5u1An948b072jDwVAwxgDGGRQxjcVvrXH8fq6hwYOoNiQwOmx91ElI0ipoZNcZr7SeCTh0KE4e1E3GdQ50X2s_5OiiRICvXhKkeBebdc3bCrRdf-MY6wsYScsy1wBVqySuRbfPDKc83_52MBx8xmnqi7NxtCwOa046AVP2A-nY8FcKYTms3Bmgp46IxmOo28A91zb-3UmMyL0JH64y7Sm8fO-SEpPEIjZXfulXYh"/>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">ExpenseGuard</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-container-highest rounded-full transition-colors active:scale-98">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="w-full max-w-md mx-auto px-margin-mobile pt-2 pb-24 flex flex-col gap-8">
+<!-- Header Area -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Your Cards</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Manage active corporate cards</p>
+</div>
+<button class="text-primary-container font-label-md text-label-md flex items-center gap-1 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span> New
+            </button>
+</div>
+<!-- Cards List -->
+<div class="flex flex-col gap-6">
+<!-- Card Item 1 -->
+<div class="flex flex-col gap-4">
+<!-- Physical Card Graphic -->
+<div class="card-gradient w-full aspect-[1.586/1] rounded-2xl p-6 flex flex-col justify-between shadow-[0px_8px_24px_rgba(31,29,25,0.15)] relative overflow-hidden group">
+<!-- Decorative overlay -->
+<div class="absolute inset-0 bg-white/5 opacity-50 pointer-events-none" style="background-image: radial-gradient(circle at 100% 0%, rgba(255,255,255,0.2) 0%, transparent 50%);"></div>
+<div class="flex justify-between items-start relative z-10">
+<span class="font-label-md text-label-md text-white/90 tracking-widest uppercase">Corporate Visa</span>
+<span class="material-symbols-outlined text-white/90 fill" data-icon="contactless">contactless</span>
+</div>
+<div class="relative z-10">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-metadata text-metadata text-white/70 mb-1">Card Number</p>
+<p class="font-headline-md text-headline-md text-white tracking-widest flex items-center gap-3">
+<span class="opacity-60">••••</span> <span class="opacity-60">••••</span> <span class="opacity-60">••••</span> 4289
+                                </p>
+</div>
+<div class="text-right">
+<p class="font-metadata text-metadata text-white/70 mb-1">Exp</p>
+<p class="font-body-md text-body-md text-white">12/26</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Card Controls -->
+<div class="bg-surface-container-lowest rounded-xl p-4 border border-outline-variant/30 flex justify-between items-center shadow-[0px_4px_12px_rgba(31,29,25,0.05)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined" data-icon="ac_unit">ac_unit</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Freeze Card</p>
+<p class="font-metadata text-metadata text-on-surface-variant">Temporarily lock physical card</p>
+</div>
+</div>
+<!-- Toggle Switch -->
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 top-0 left-0 transition-all duration-200 ease-in-out" id="toggle1" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-surface-variant cursor-pointer transition-colors duration-200 ease-in-out" for="toggle1"></label>
+</div>
+</div>
+<!-- Quick Transactions Preview for Card 1 -->
+<div class="mt-2">
+<h3 class="font-label-md text-label-md text-on-surface-variant mb-3 uppercase tracking-wider">Recent Activity (4289)</h3>
+<div class="flex flex-col gap-3">
+<!-- Tx 1 -->
+<div class="flex items-center justify-between bg-surface-container-lowest p-3 rounded-lg border border-outline-variant/20">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center overflow-hidden shrink-0">
+<img alt="Merchant Logo" class="w-full h-full object-cover" data-alt="A minimalist logo for a trendy coffee shop featuring a stylized cup graphic in warm earthy tones on a soft cream background, fitting the elegant and warm enterprise aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACGba7wCSOPjRQIQlOXXu88C86JiHv4loXqPvmn8QmmbRGLSgt2fUuMGmMOu47xEeqkRPCQhuhruTsKdGNBjGDFMOfsyApGJYmfZG6Anffbbu4trfanhb2O_wzgV9-AOJxyM8gy4-ZO-fLmVPy4OaGOoo8AlwvXTp9xYsb2SeIJxoE3oxbJLyXRApDNo3qgpkHTsi-8cbehaWBv0Mr6kkO3um8uEDjPSFTctQpR29JKp9ZGv09gGcQ"/>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-medium">Blue Bottle Coffee</p>
+<p class="font-metadata text-metadata text-on-surface-variant">Today, 8:45 AM • Meals</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-body-lg text-body-lg text-on-surface font-semibold tabular-nums">-$14.50</p>
+</div>
+</div>
+<!-- Tx 2 -->
+<div class="flex items-center justify-between bg-surface-container-lowest p-3 rounded-lg border border-outline-variant/20">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant shrink-0">
+<span class="material-symbols-outlined" data-icon="flight">flight</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-medium">Delta Airlines</p>
+<p class="font-metadata text-metadata text-on-surface-variant">Yesterday • Travel</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-body-lg text-body-lg text-on-surface font-semibold tabular-nums">-$450.00</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-3 py-2 text-center text-primary-container font-label-md text-label-md hover:bg-surface-container-low rounded-lg transition-colors">
+                        View all for this card
+                    </button>
+</div>
+</div>
+<hr class="border-outline-variant/30 my-2"/>
+<!-- Card Item 2 (Virtual) -->
+<div class="flex flex-col gap-4 opacity-90">
+<!-- Virtual Card Graphic (Lighter Variant) -->
+<div class="bg-gradient-to-br from-surface-tint to-tertiary w-full aspect-[1.586/1] rounded-2xl p-6 flex flex-col justify-between shadow-[0px_4px_12px_rgba(31,29,25,0.1)] relative overflow-hidden group">
+<div class="flex justify-between items-start relative z-10">
+<span class="font-label-md text-label-md text-white/90 tracking-widest uppercase">Software Subs (Virtual)</span>
+<div class="px-2 py-1 bg-white/20 rounded text-[10px] text-white uppercase tracking-wider font-semibold backdrop-blur-sm">Virtual</div>
+</div>
+<div class="relative z-10">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-metadata text-metadata text-white/70 mb-1">Card Number</p>
+<p class="font-headline-md text-headline-md text-white tracking-widest flex items-center gap-3">
+<span class="opacity-60">••••</span> <span class="opacity-60">••••</span> <span class="opacity-60">••••</span> 9912
+                                </p>
+</div>
+<div class="text-right">
+<p class="font-metadata text-metadata text-white/70 mb-1">Exp</p>
+<p class="font-body-md text-body-md text-white">08/25</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Card Controls -->
+<div class="bg-surface-container-lowest rounded-xl p-4 border border-outline-variant/30 flex justify-between items-center shadow-[0px_4px_12px_rgba(31,29,25,0.05)]">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined" data-icon="block">block</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Freeze Card</p>
+<p class="font-metadata text-metadata text-on-surface-variant">Pause active subscriptions</p>
+</div>
+</div>
+<!-- Toggle Switch (Checked/Frozen example) -->
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input checked="" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer z-10 top-0 left-0 transition-all duration-200 ease-in-out border-primary-container right-0" id="toggle2" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full cursor-pointer transition-colors duration-200 ease-in-out bg-primary-container" for="toggle2"></label>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Shell Component) -->
+<!-- Content: Home, Submit, Cards, Approvals, Profile -->
+<!-- Active State: 'Cards' matches page intent exactly -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-xl border-t border-outline-variant/30 shadow-[0px_-4px_12px_rgba(31,29,25,0.05)] md:hidden">
+<div class="flex justify-around items-center px-margin-mobile pt-3 pb-safe-area-bottom w-full max-w-md mx-auto">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-label-md text-label-md mt-1">Submit</span>
+</a>
+<!-- ACTIVE TAB -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed font-semibold hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined fill" data-icon="credit_card">credit_card</span>
+<span class="font-label-md text-label-md mt-1">Cards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="rule">rule</span>
+<span class="font-label-md text-label-md mt-1">Approvals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md mt-1">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Simple toggle interaction logic for demonstration
+        document.querySelectorAll('.toggle-checkbox').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const cardContainer = this.closest('.flex-col.gap-4');
+                const cardGraphic = cardContainer.querySelector('.aspect-\\[1\\.586\\/1\\]');
+                
+                if(this.checked) {
+                    cardGraphic.style.filter = 'grayscale(80%) brightness(0.8)';
+                    cardGraphic.style.transition = 'filter 0.3s ease';
+                } else {
+                    cardGraphic.style.filter = 'none';
+                }
+            });
+            
+            // Initialize state
+            if(toggle.checked) {
+                const cardContainer = toggle.closest('.flex-col.gap-4');
+                const cardGraphic = cardContainer.querySelector('.aspect-\\[1\\.586\\/1\\]');
+                if(cardGraphic) {
+                    cardGraphic.style.filter = 'grayscale(80%) brightness(0.8)';
+                }
+            }
+        });
+    </script>
+</body></html>

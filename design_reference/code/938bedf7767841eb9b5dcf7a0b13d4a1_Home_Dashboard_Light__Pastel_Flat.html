@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ExpenseGuard Home Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-container-lowest": "#ffffff",
+                "inverse-primary": "#9dd1bf",
+                "sky-blue": "#C7CEEA",
+                "secondary-fixed": "#f1daff",
+                "on-tertiary-fixed-variant": "#5a422f",
+                "error": "#ba1a1a",
+                "tertiary-fixed": "#ffdcc4",
+                "surface-tint": "#366758",
+                "background": "#f8f9fa",
+                "on-background": "#191c1d",
+                "secondary-container": "#f1daff",
+                "on-secondary": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "on-surface": "#191c1d",
+                "on-error": "#ffffff",
+                "surface-container": "#edeeef",
+                "inverse-on-surface": "#f0f1f2",
+                "on-primary-fixed": "#002018",
+                "surface-container-highest": "#e1e3e4",
+                "secondary-fixed-dim": "#d4bfe2",
+                "lavender": "#E2CCF0",
+                "primary-fixed": "#b9eedb",
+                "on-primary-container": "#396b5c",
+                "tertiary-container": "#fdd8bf",
+                "on-primary": "#ffffff",
+                "surface-container-high": "#e7e8e9",
+                "outline": "#707975",
+                "surface-variant": "#e1e3e4",
+                "mint": "#B5EAD7",
+                "surface-bright": "#f8f9fa",
+                "on-tertiary-fixed": "#2a1708",
+                "secondary": "#695876",
+                "on-secondary-fixed-variant": "#50405e",
+                "on-surface-variant": "#404945",
+                "tertiary": "#745945",
+                "on-tertiary-container": "#785d49",
+                "tertiary-fixed-dim": "#e3c0a8",
+                "on-secondary-fixed": "#231530",
+                "on-primary-fixed-variant": "#1c4f41",
+                "surface-container-low": "#f3f4f5",
+                "peach": "#FFDAC1",
+                "surface": "#f8f9fa",
+                "border-dark": "#1A1C1E",
+                "error-container": "#ffdad6",
+                "inverse-surface": "#2e3132",
+                "outline-variant": "#c0c9c4",
+                "primary-fixed-dim": "#9dd1bf",
+                "dark-bg": "#2D2E37",
+                "on-error-container": "#93000a",
+                "surface-dim": "#d9dadb",
+                "primary-container": "#b5ead7",
+                "on-secondary-container": "#6f5e7d",
+                "primary": "#366758"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "margin-mobile": "1.25rem",
+                "gutter-mobile": "0.75rem",
+                "stack-gap": "1rem",
+                "container-padding": "1rem",
+                "touch-target": "2.75rem"
+        },
+        "fontFamily": {
+                "headline-lg": [
+                        "Inter"
+                ],
+                "headline-md": [
+                        "Inter"
+                ],
+                "headline-lg-mobile": [
+                        "Inter"
+                ],
+                "label-md": [
+                        "Inter"
+                ],
+                "display-currency": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ],
+                "metadata": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "headline-lg": [
+                        "28px",
+                        {
+                                "lineHeight": "34px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-md": [
+                        "20px",
+                        {
+                                "lineHeight": "26px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "30px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-md": [
+                        "13px",
+                        {
+                                "lineHeight": "18px",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-currency": [
+                        "40px",
+                        {
+                                "lineHeight": "48px",
+                                "letterSpacing": "-0.03em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "body-lg": [
+                        "17px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "metadata": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "500"
+                        }
+                ],
+                "body-md": [
+                        "15px",
+                        {
+                                "lineHeight": "22px",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .tabular-nums { font-variant-numeric: tabular-nums; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-[120px] font-body-md">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-40 bg-background flex justify-between items-center px-margin-mobile py-4 transition-colors">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover border-[1.5px] border-border-dark" data-alt="A small, professional headshot of a woman named Sarah, smiling warmly in a well-lit office setting. The image should feel modern, corporate yet approachable, matching a light-mode enterprise app aesthetic. Soft, natural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSUu28ZS_MB4HjuCMQAASNka3nER3quAkNHx2kr8ykFeCChGcOgSvdZkaKBxKoj8Wd9N-T2fwSif04WqpdEd5tzrjqj4YqsdBx2-06BlOFI7hYfK2SLHv_men_-hyOhEQcUtz_91YRkN5RdITUXSsv-Z2FnfWJKKDm9gVASW7ONeZ49GyqmxengyuSxP8QJTR3sMA4NF8BiUoihdN-oLZetXeBadJ13d1Be1Pj3i9buEQjvYrpHdw4"/>
+<span class="font-headline-md text-headline-md text-primary">ExpenseGuard</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-on-surface hover:bg-surface-container-low rounded-full transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="px-margin-mobile max-w-lg mx-auto">
+<!-- Greeting -->
+<section class="mt-4 mb-stack-gap">
+<h1 class="font-headline-lg text-headline-lg text-on-background">Good morning, Sarah</h1>
+</section>
+<!-- Main Card -->
+<section class="bg-surface-container-lowest rounded-xl p-5 border-2 border-border-dark mb-stack-gap flex flex-col gap-2">
+<p class="font-body-md text-body-md text-on-surface-variant">This month's spend</p>
+<h2 class="font-display-currency text-display-currency text-on-surface tabular-nums">$2,450.80</h2>
+</section>
+<!-- Recent Transactions -->
+<section>
+<h3 class="font-headline-md text-headline-md text-on-background mb-4">Recent transactions</h3>
+<div class="flex flex-col gap-stack-gap">
+<!-- Transaction 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 border-2 border-border-dark flex items-center justify-between hover:bg-surface-container-low transition-colors active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-mint rounded-full flex items-center justify-center text-on-surface border-[1.5px] border-border-dark">
+<span class="material-symbols-outlined" data-icon="local_cafe">local_cafe</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg font-semibold text-on-surface">Starbucks</p>
+<p class="font-metadata text-metadata text-on-surface-variant">Today</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="font-body-lg text-body-lg font-semibold tabular-nums text-on-surface">$5.40</span>
+<div class="bg-mint/40 px-2 py-0.5 rounded-full flex items-center gap-1 border border-border-dark">
+<span class="material-symbols-outlined text-[12px] text-on-surface" data-icon="check_circle">check_circle</span>
+<span class="font-metadata text-metadata text-on-surface">Auto-cleared</span>
+</div>
+</div>
+</div>
+<!-- Transaction 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 border-2 border-border-dark flex items-center justify-between hover:bg-surface-container-low transition-colors active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-lavender rounded-full flex items-center justify-center text-on-surface border-[1.5px] border-border-dark">
+<span class="material-symbols-outlined" data-icon="flight">flight</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg font-semibold text-on-surface">Delta Air Lines</p>
+<p class="font-metadata text-metadata text-on-surface-variant">Yesterday</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="font-body-lg text-body-lg font-semibold tabular-nums text-on-surface">$450.00</span>
+<div class="bg-peach/40 px-2 py-0.5 rounded-full flex items-center gap-1 border border-border-dark">
+<span class="material-symbols-outlined text-[12px] text-on-surface" data-icon="schedule">schedule</span>
+<span class="font-metadata text-metadata text-on-surface">Reviewing</span>
+</div>
+</div>
+</div>
+<!-- Transaction 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-4 border-2 border-border-dark flex items-center justify-between hover:bg-surface-container-low transition-colors active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-sky-blue rounded-full flex items-center justify-center text-on-surface border-[1.5px] border-border-dark">
+<span class="material-symbols-outlined" data-icon="cloud">cloud</span>
+</div>
+<div>
+<p class="font-body-lg text-body-lg font-semibold text-on-surface">AWS</p>
+<p class="font-metadata text-metadata text-on-surface-variant">Oct 24</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="font-body-lg text-body-lg font-semibold tabular-nums text-on-surface">$124.50</span>
+<div class="bg-mint/40 px-2 py-0.5 rounded-full flex items-center gap-1 border border-border-dark">
+<span class="material-symbols-outlined text-[12px] text-on-surface" data-icon="check_circle">check_circle</span>
+<span class="font-metadata text-metadata text-on-surface">Auto-cleared</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-[90px] right-margin-mobile w-14 h-14 bg-mint text-on-surface rounded-full border-2 border-border-dark flex items-center justify-center hover:opacity-90 active:scale-[0.95] transition-all z-40 md:hidden">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-background border-t-2 border-border-dark flex justify-around items-center px-margin-mobile pt-3 pb-6 md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface font-semibold hover:opacity-80 transition-opacity active:scale-95 duration-150 relative group">
+<div class="w-16 h-8 bg-mint rounded-full flex items-center justify-center border-2 border-border-dark mb-1">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+</div>
+<span class="font-label-md text-label-md">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors active:scale-95 duration-150">
+<div class="w-16 h-8 flex items-center justify-center mb-1">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+</div>
+<span class="font-label-md text-label-md">Submit</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors active:scale-95 duration-150">
+<div class="w-16 h-8 flex items-center justify-center mb-1">
+<span class="material-symbols-outlined" data-icon="credit_card">credit_card</span>
+</div>
+<span class="font-label-md text-label-md">Cards</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors active:scale-95 duration-150">
+<div class="w-16 h-8 flex items-center justify-center mb-1">
+<span class="material-symbols-outlined" data-icon="rule">rule</span>
+</div>
+<span class="font-label-md text-label-md">Approvals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors active:scale-95 duration-150">
+<div class="w-16 h-8 flex items-center justify-center mb-1">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<span class="font-label-md text-label-md">Profile</span>
+</button>
+</nav>
+</body></html>

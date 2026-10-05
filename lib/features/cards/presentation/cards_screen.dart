@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:expense_guard/core/theme/app_theme.dart';
 import 'package:expense_guard/models/corporate_card.dart';
 import 'package:expense_guard/features/cards/providers/cards_provider.dart';
+import 'package:expense_guard/features/shared/presentation/skeleton_loader.dart';
 
 /// Screen displaying Corporate Cards carousel (Physical and Virtual),
 /// card freeze toggles, monthly budget limits, and card-specific transactions.
@@ -371,9 +372,11 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
         ],
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          child: Column(
+        child: state.isLoading
+            ? const CardsSkeletonLoader(key: Key('cards_skeleton_loader'))
+            : SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // 1. Header Text

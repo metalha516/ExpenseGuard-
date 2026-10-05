@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:expense_guard/core/theme/app_theme.dart';
 import 'package:expense_guard/core/router/app_router.dart';
+import 'package:expense_guard/core/errors/app_error_handler.dart';
+import 'package:expense_guard/core/errors/app_error_boundary.dart';
 import 'package:expense_guard/features/shared/providers/theme_provider.dart';
 
 void main() {
@@ -29,6 +31,12 @@ class MyApp extends ConsumerWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: themeMode,
       routerConfig: router,
+      scaffoldMessengerKey: AppErrorHandler.scaffoldMessengerKey,
+      builder: (context, child) {
+        return AppErrorBoundary(
+          child: child ?? const SizedBox.shrink(),
+        );
+      },
     );
   }
 }

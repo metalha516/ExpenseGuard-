@@ -540,6 +540,7 @@ extension AppThemeContextExtension on BuildContext {
   TextStyle get metadataText => Theme.of(this).textTheme.labelSmall!;
   TextStyle get headlineLg => Theme.of(this).textTheme.headlineLarge!;
   TextStyle get headlineMd => Theme.of(this).textTheme.headlineMedium!;
+  TextStyle get titleMedium => Theme.of(this).textTheme.titleMedium!;
   TextStyle get bodyLg => Theme.of(this).textTheme.bodyLarge!;
   TextStyle get bodyLarge => Theme.of(this).textTheme.bodyLarge!;
   TextStyle get bodyMd => Theme.of(this).textTheme.bodyMedium!;

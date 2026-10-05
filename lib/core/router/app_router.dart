@@ -127,9 +127,21 @@ GoRouter createAppRouter({
         path: '/transaction-detail',
         parentNavigatorKey: rootKey,
         builder: (context, state) {
-          final id = state.uri.queryParameters['id'];
+          final id = state.uri.queryParameters['id'] ?? (state.extra as String?);
           return TransactionDetailScreen(transactionId: id);
         },
+        routes: [
+          GoRoute(
+            path: ':id',
+            parentNavigatorKey: rootKey,
+            builder: (context, state) {
+              final id = state.pathParameters['id'] ??
+                  state.uri.queryParameters['id'] ??
+                  (state.extra as String?);
+              return TransactionDetailScreen(transactionId: id);
+            },
+          ),
+        ],
       ),
 
       // 12. Notifications Center Screen

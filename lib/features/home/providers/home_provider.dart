@@ -163,7 +163,7 @@ class HomeNotifier extends Notifier<HomeState> {
         currency: 'USD',
         category: 'Hardware & Tools',
         timestamp: now.subtract(const Duration(days: 7)),
-        status: TransactionStatus.cleared,
+        status: TransactionStatus.flagged,
         cardLast4: '4291',
         iconName: 'laptop_mac',
         receiptAttached: false,

@@ -36,10 +36,10 @@ void main() {
     // Verify Home Screen and Persistent Bottom Navigation Bar
     expect(find.text('Good morning, Alex'), findsOneWidget);
     expect(find.byType(ScaffoldWithNavBar), findsOneWidget);
-    expect(find.text('Home'), findsOneWidget);
-    expect(find.text('Approvals'), findsOneWidget);
-    expect(find.text('Insights'), findsOneWidget);
-    expect(find.text('Profile'), findsOneWidget);
+    expect(find.byKey(const Key('nav_item_home')), findsOneWidget);
+    expect(find.byKey(const Key('nav_item_approvals')), findsOneWidget);
+    expect(find.byKey(const Key('nav_item_insights')), findsOneWidget);
+    expect(find.byKey(const Key('nav_item_profile')), findsOneWidget);
     expect(find.byKey(const Key('docked_camera_fab')), findsOneWidget);
   });
 

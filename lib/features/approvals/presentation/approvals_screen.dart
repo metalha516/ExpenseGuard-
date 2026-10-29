@@ -38,8 +38,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
   @override
   Widget build(BuildContext context) {
     final colors = context.pastelColors;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final state = ref.watch(approvalsProvider);
+        final state = ref.watch(approvalsProvider);
     final notifier = ref.read(approvalsProvider.notifier);
 
     return Scaffold(
@@ -57,7 +56,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
               Text(
                 '${state.pendingCount} items requiring review (\$${state.totalPendingAmount.toStringAsFixed(2)})',
                 style: context.metadataText.copyWith(
-                  color: colors.borderDark.withValues(alpha: 0.65),
+                  color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.65),
                 ),
               ),
           ],
@@ -67,7 +66,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
             key: const Key('approvals_search_toggle_button'),
             icon: Icon(
               _isSearchExpanded ? Icons.close_rounded : Icons.search_rounded,
-              color: colors.borderDark,
+              color: context.isDark ? Colors.white : colors.borderDark,
             ),
             onPressed: () {
               setState(() {
@@ -84,7 +83,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
             tooltip: 'Reset Demo Queue',
             icon: Icon(
               Icons.restart_alt_rounded,
-              color: colors.borderDark,
+              color: context.isDark ? Colors.white : colors.borderDark,
             ),
             onPressed: () {
               notifier.reset();
@@ -139,7 +138,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
             Expanded(
               child: state.filteredPendingItems.isEmpty
                   ? _buildEmptyState(colors, state, notifier)
-                  : _buildApprovalsList(colors, isDark, state, notifier),
+                  : _buildApprovalsList(colors, context.isDark, state, notifier),
             ),
           ],
         ),
@@ -223,7 +222,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (icon != null) ...[
-              Icon(icon, size: 15, color: colors.borderDark),
+              Icon(icon, size: 15, color: context.isDark ? (isSelected ? const Color(0xFF1A1C1E) : Colors.white70) : colors.borderDark),
               const SizedBox(width: 6),
             ],
             Text(
@@ -231,7 +230,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
               style: TextStyle(
                 fontSize: 13,
                 fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
-                color: colors.borderDark,
+                color: context.isDark ? (isSelected ? const Color(0xFF1A1C1E) : Colors.white) : colors.borderDark,
               ),
             ),
           ],
@@ -280,7 +279,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
             _buildDismissibleApprovalCard(
               context,
               colors,
-              isDark,
+              context.isDark,
               item,
               notifier,
             ),
@@ -305,7 +304,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
             _buildDismissibleApprovalCard(
               context,
               colors,
-              isDark,
+              context.isDark,
               item,
               notifier,
             ),
@@ -411,7 +410,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
           );
         }
       },
-      child: _buildApprovalCardContent(context, colors, isDark, item, notifier),
+      child: _buildApprovalCardContent(context, colors, context.isDark, item, notifier),
     );
   }
 
@@ -480,7 +479,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
           borderRadius: BorderRadius.circular(AppTheme.cardRadius),
           border: Border.all(
             color: item.isHighRisk
-                ? (isDark ? const Color(0xFFFFB4AB) : colors.borderDark)
+                ? (context.isDark ? const Color(0xFFFFB4AB) : colors.borderDark)
                 : colors.borderDark,
             width: AppTheme.borderWidth,
           ),
@@ -512,14 +511,14 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
                         item.employeeName,
                         style: context.bodyLarge.copyWith(
                           fontWeight: FontWeight.w700,
-                          color: colors.borderDark,
+                          color: context.isDark ? Colors.white : colors.borderDark,
                         ),
                       ),
                       const SizedBox(height: 2),
                       Text(
                         '${item.merchant} • ${_formatShortDate(item.date)}',
                         style: context.metadataText.copyWith(
-                          color: colors.borderDark.withValues(alpha: 0.7),
+                          color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
                         ),
                       ),
                     ],
@@ -541,7 +540,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
                     Text(
                       item.category,
                       style: context.metadataText.copyWith(
-                        color: colors.borderDark.withValues(alpha: 0.6),
+                        color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.6),
                       ),
                     ),
                   ],
@@ -574,14 +573,14 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
                         Icon(
                           Icons.receipt_long_rounded,
                           size: 13,
-                          color: colors.borderDark,
+                          color: context.isDark ? Colors.white70 : colors.borderDark,
                         ),
                         const SizedBox(width: 4),
                         Text(
                           'Receipt Attached',
                           style: context.metadataText.copyWith(
                             fontWeight: FontWeight.w600,
-                            color: colors.borderDark,
+                            color: context.isDark ? Colors.white70 : colors.borderDark,
                           ),
                         ),
                       ],
@@ -610,7 +609,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
                         fontWeight: FontWeight.w700,
                         color: item.isHighRisk
                             ? const Color(0xFF93000A)
-                            : colors.borderDark,
+                            : (context.isDark ? Colors.white : colors.borderDark),
                       ),
                     ),
                   ),
@@ -628,7 +627,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
                   vertical: 9,
                 ),
                 decoration: BoxDecoration(
-                  color: isDark
+                  color: context.isDark
                       ? const Color(0xFF3B1E1E)
                       : const Color(0xFFFFDAD6).withValues(alpha: 0.45),
                   borderRadius: BorderRadius.circular(AppTheme.buttonRadius),
@@ -681,7 +680,7 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
                   style: context.bodyMedium.copyWith(
                     fontStyle: FontStyle.italic,
                     fontSize: 13,
-                    color: colors.borderDark.withValues(alpha: 0.8),
+                    color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.8),
                     height: 1.4,
                   ),
                 ),
@@ -705,13 +704,13 @@ class _ApprovalsScreenState extends ConsumerState<ApprovalsScreen> {
                     Icon(
                       Icons.swipe_rounded,
                       size: 14,
-                      color: colors.borderDark.withValues(alpha: 0.5),
+                      color: context.isDark ? Colors.white54 : colors.borderDark.withValues(alpha: 0.5),
                     ),
                     const SizedBox(width: 4),
                     Text(
                       'Swipe to action',
                       style: context.metadataText.copyWith(
-                        color: colors.borderDark.withValues(alpha: 0.5),
+                        color: context.isDark ? Colors.white54 : colors.borderDark.withValues(alpha: 0.5),
                       ),
                     ),
                   ],

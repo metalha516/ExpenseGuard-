@@ -152,7 +152,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               child: Text(
                 'Skip',
                 style: context.labelMd.copyWith(
-                  color: colors.borderDark,
+                  color: context.isDark ? Colors.white70 : colors.borderDark,
                   fontWeight: FontWeight.w600,
                 ),
               ),

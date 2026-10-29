@@ -261,7 +261,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                 style: context.metadataText.copyWith(
                   fontWeight: FontWeight.w800,
                   letterSpacing: 1.2,
-                  color: colors.borderDark.withValues(alpha: 0.7),
+                  color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
                 ),
               ),
               const SizedBox(width: 8),
@@ -280,7 +280,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                   style: context.metadataText.copyWith(
                     fontSize: 10,
                     fontWeight: FontWeight.w700,
-                    color: colors.borderDark.withValues(alpha: 0.8),
+                    color: context.isDark ? Colors.white : colors.borderDark.withValues(alpha: 0.8),
                   ),
                 ),
               ),
@@ -436,7 +436,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                                 fontWeight: item.isRead
                                     ? FontWeight.w600
                                     : FontWeight.w800,
-                                color: colors.borderDark,
+                                color: context.isDark ? Colors.white : colors.borderDark,
                               ),
                             ),
                           ),
@@ -458,7 +458,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                       Text(
                         item.message,
                         style: context.bodyMedium.copyWith(
-                          color: colors.borderDark.withValues(alpha: 0.8),
+                          color: context.isDark ? Colors.white : colors.borderDark.withValues(alpha: 0.8),
                           fontSize: 13,
                         ),
                       ),
@@ -468,13 +468,13 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                           Icon(
                             Icons.access_time_rounded,
                             size: 13,
-                            color: colors.borderDark.withValues(alpha: 0.5),
+                            color: context.isDark ? Colors.white54 : colors.borderDark.withValues(alpha: 0.5),
                           ),
                           const SizedBox(width: 4),
                           Text(
                             formattedTime,
                             style: context.metadataText.copyWith(
-                              color: colors.borderDark.withValues(alpha: 0.6),
+                              color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.6),
                               fontSize: 11,
                             ),
                           ),
@@ -555,7 +555,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
                   ? 'No notifications match "${state.searchQuery}".'
                   : 'No ${state.selectedFilter != NotificationFilter.all ? state.selectedFilter.label.toLowerCase() : ""} notifications right now.',
               style: context.bodyMedium.copyWith(
-                color: colors.borderDark.withValues(alpha: 0.7),
+                color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
               ),
               textAlign: TextAlign.center,
             ),
@@ -569,7 +569,7 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
               label: const Text('Reset Demo Notifications'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: colors.cardSurface,
-                foregroundColor: colors.borderDark,
+                foregroundColor: context.isDark ? Colors.white : colors.borderDark,
                 elevation: 0,
                 side: BorderSide(color: colors.borderDark, width: 1.5),
                 shape: RoundedRectangleBorder(

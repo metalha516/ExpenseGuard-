@@ -24,6 +24,7 @@ class MainShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.pastelColors;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final currentIndex = navigationShell.currentIndex;
 
     return Scaffold(
@@ -33,106 +34,127 @@ class MainShell extends StatelessWidget {
         height: 60,
         width: 60,
         margin: const EdgeInsets.only(top: 10),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: isDark
+                  ? colors.mint.withValues(alpha: 0.35)
+                  : colors.borderDark.withValues(alpha: 0.18),
+              blurRadius: isDark ? 10 : 6,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
         child: FloatingActionButton(
           key: const Key('docked_camera_fab'),
           elevation: 0,
           highlightElevation: 0,
           backgroundColor: colors.mint,
-          foregroundColor: colors.borderDark,
+          foregroundColor: const Color(0xFF14241E),
           shape: CircleBorder(
             side: BorderSide(
-              color: colors.borderDark,
+              color: isDark ? const Color(0xFF38433E) : colors.borderDark,
               width: 2.0,
             ),
           ),
           onPressed: () => context.push('/submit-expense'),
           tooltip: 'Submit Expense (Camera)',
-          child: Icon(
+          child: const Icon(
             Icons.camera_alt_rounded,
             size: 28,
-            color: colors.borderDark,
+            color: Color(0xFF14241E),
           ),
         ),
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: isDark
+              ? const Color(0xFF20222B)
+              : Theme.of(context).scaffoldBackgroundColor,
           border: Border(
             top: BorderSide(
-              color: colors.borderDark,
+              color: isDark ? const Color(0xFF383C4A) : colors.borderDark,
               width: AppTheme.borderWidth,
             ),
           ),
         ),
         child: BottomAppBar(
           elevation: 0,
-          notchMargin: 8.0,
+          notchMargin: 6.0,
           clipBehavior: Clip.none,
           padding: EdgeInsets.zero,
-          color: Theme.of(context).scaffoldBackgroundColor,
+          color: isDark
+              ? const Color(0xFF20222B)
+              : Theme.of(context).scaffoldBackgroundColor,
           shape: const CircularNotchedRectangle(),
           child: SafeArea(
             top: false,
             child: SizedBox(
               height: 68,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  // Left Tab 0: Home
+                  // Left Wing (balanced 50% width minus center notch gap)
                   Expanded(
-                    child: _ShellNavItem(
-                      key: const Key('nav_item_home'),
-                      icon: Icons.home_rounded,
-                      label: 'Home',
-                      isSelected: currentIndex == 0,
-                      onTap: () => _onTabSelected(0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: _ShellNavItem(
+                            key: const Key('nav_item_home'),
+                            icon: Icons.home_rounded,
+                            label: 'Home',
+                            isSelected: currentIndex == 0,
+                            onTap: () => _onTabSelected(0),
+                          ),
+                        ),
+                        Expanded(
+                          child: _ShellNavItem(
+                            key: const Key('nav_item_approvals'),
+                            icon: Icons.rule_rounded,
+                            label: 'Approvals',
+                            isSelected: currentIndex == 1,
+                            onTap: () => _onTabSelected(1),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
 
-                  // Left Tab 1: Approvals
-                  Expanded(
-                    child: _ShellNavItem(
-                      key: const Key('nav_item_approvals'),
-                      icon: Icons.rule_rounded,
-                      label: 'Approvals',
-                      isSelected: currentIndex == 1,
-                      onTap: () => _onTabSelected(1),
-                    ),
-                  ),
+                  // Center notch gap: Mathematically centered at exactly 50%
+                  const SizedBox(width: 72),
 
-                  // Center space reserved for the docked FAB
-                  const SizedBox(width: 64),
-
-                  // Right Tab 2: Cards
+                  // Right Wing (balanced 50% width minus center notch gap)
                   Expanded(
-                    child: _ShellNavItem(
-                      key: const Key('nav_item_cards'),
-                      icon: Icons.credit_card_rounded,
-                      label: 'Cards',
-                      isSelected: currentIndex == 2,
-                      onTap: () => _onTabSelected(2),
-                    ),
-                  ),
-
-                  // Right Tab 3: Insights
-                  Expanded(
-                    child: _ShellNavItem(
-                      key: const Key('nav_item_insights'),
-                      icon: Icons.insights_rounded,
-                      label: 'Insights',
-                      isSelected: currentIndex == 3,
-                      onTap: () => _onTabSelected(3),
-                    ),
-                  ),
-
-                  // Right Tab 4: Profile
-                  Expanded(
-                    child: _ShellNavItem(
-                      key: const Key('nav_item_profile'),
-                      icon: Icons.person_rounded,
-                      label: 'Profile',
-                      isSelected: currentIndex == 4,
-                      onTap: () => _onTabSelected(4),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: _ShellNavItem(
+                            key: const Key('nav_item_cards'),
+                            icon: Icons.credit_card_rounded,
+                            label: 'Cards',
+                            isSelected: currentIndex == 2,
+                            onTap: () => _onTabSelected(2),
+                          ),
+                        ),
+                        Expanded(
+                          child: _ShellNavItem(
+                            key: const Key('nav_item_insights'),
+                            icon: Icons.insights_rounded,
+                            label: 'Insights',
+                            isSelected: currentIndex == 3,
+                            onTap: () => _onTabSelected(3),
+                          ),
+                        ),
+                        Expanded(
+                          child: _ShellNavItem(
+                            key: const Key('nav_item_profile'),
+                            icon: Icons.person_rounded,
+                            label: 'Profile',
+                            isSelected: currentIndex == 4,
+                            onTap: () => _onTabSelected(4),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -165,35 +187,41 @@ class _ShellNavItem extends StatelessWidget {
     final colors = context.pastelColors;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
+    final selectedBg = isDark
+        ? colors.mint.withValues(alpha: 0.22)
+        : colors.mint;
+    final selectedBorder = isDark
+        ? Border.all(color: colors.mint, width: 1.5)
+        : Border.all(color: colors.borderDark, width: AppTheme.borderWidth);
+    final activeIconColor = isDark ? colors.mint : const Color(0xFF1A1C1E);
+    final inactiveIconColor =
+        isDark ? const Color(0xFFB0B9B4) : const Color(0xFF5E6764);
+    final activeTextColor = isDark ? colors.mint : const Color(0xFF1A1C1E);
+    final inactiveTextColor =
+        isDark ? const Color(0xFFCBD5D0) : const Color(0xFF5E6764);
+
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(16),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4.0),
+        padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 2.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AnimatedContainer(
               duration: const Duration(milliseconds: 200),
-              width: isSelected ? 48 : 36,
+              width: isSelected ? 44 : 36,
               height: 28,
               decoration: BoxDecoration(
-                color: isSelected ? colors.mint : Colors.transparent,
+                color: isSelected ? selectedBg : Colors.transparent,
                 borderRadius: BorderRadius.circular(14),
-                border: isSelected
-                    ? Border.all(
-                        color: colors.borderDark,
-                        width: AppTheme.borderWidth,
-                      )
-                    : null,
+                border: isSelected ? selectedBorder : null,
               ),
               child: Icon(
                 icon,
                 size: 20,
-                color: isSelected
-                    ? const Color(0xFF1A1C1E)
-                    : (isDark ? Colors.white70 : const Color(0xFF5E6764)),
+                color: isSelected ? activeIconColor : inactiveIconColor,
               ),
             ),
             const SizedBox(height: 3),
@@ -202,11 +230,9 @@ class _ShellNavItem extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: context.labelMd.copyWith(
-                fontSize: 10.5,
+                fontSize: 10.0,
                 fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                color: isSelected
-                    ? (isDark ? Colors.white : const Color(0xFF1A1C1E))
-                    : (isDark ? Colors.white60 : const Color(0xFF5E6764)),
+                color: isSelected ? activeTextColor : inactiveTextColor,
               ),
             ),
           ],

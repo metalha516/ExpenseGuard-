@@ -79,7 +79,7 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                     Text(
                       '${card.displayName} (•••• ${card.last4})',
                       style: context.metadataText.copyWith(
-                        color: colors.borderDark.withValues(alpha: 0.7),
+                        color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -88,7 +88,7 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                         '\$${currentLimit.toStringAsFixed(0)}',
                         key: const Key('card_limit_dialog_value'),
                         style: context.displayCurrency.copyWith(
-                          color: colors.borderDark,
+                          color: context.isDark ? Colors.white : colors.borderDark,
                           fontSize: 36,
                           fontWeight: FontWeight.w800,
                         ),
@@ -210,7 +210,7 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                       Text(
                         'Provision a virtual card instantly or order a physical corporate Visa',
                         style: context.bodyMd.copyWith(
-                          color: colors.borderDark.withValues(alpha: 0.7),
+                          color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -397,7 +397,7 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                         Text(
                           'Manage active corporate cards',
                           style: context.bodyMd.copyWith(
-                            color: colors.borderDark.withValues(alpha: 0.65),
+                            color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.65),
                           ),
                         ),
                       ],
@@ -743,7 +743,7 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                 '${(progress * 100).toStringAsFixed(1)}%',
                 style: context.metadataText.copyWith(
                   fontWeight: FontWeight.w800,
-                  color: progress > 0.8 ? Colors.redAccent : colors.borderDark,
+                  color: progress > 0.8 ? Colors.redAccent : (context.isDark ? Colors.white : colors.borderDark),
                 ),
               ),
             ],
@@ -768,14 +768,14 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                 'Spent: \$${card.currentSpend.toStringAsFixed(2)}',
                 style: context.metadataText.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: colors.borderDark.withValues(alpha: 0.8),
+                  color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.8),
                 ),
               ),
               Text(
                 'Limit: \$${card.monthlyLimit.toStringAsFixed(2)}',
                 style: context.metadataText.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: colors.borderDark.withValues(alpha: 0.8),
+                  color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.8),
                 ),
               ),
             ],
@@ -834,7 +834,7 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                               ? 'Pause active subscriptions'
                               : 'Temporarily lock physical card'),
                       style: context.metadataText.copyWith(
-                        color: colors.borderDark.withValues(alpha: 0.7),
+                        color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
@@ -903,7 +903,7 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                       Text(
                         'Monthly Limit: \$${card.monthlyLimit.toStringAsFixed(0)}',
                         style: context.metadataText.copyWith(
-                          color: colors.borderDark.withValues(alpha: 0.7),
+                          color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
                         ),
                       ),
                     ],
@@ -911,7 +911,7 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                 ),
                 Icon(
                   Icons.chevron_right_rounded,
-                  color: colors.borderDark.withValues(alpha: 0.6),
+                  color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.6),
                 ),
               ],
             ),
@@ -959,7 +959,7 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                       Text(
                         'Virtual or physical corporate cards',
                         style: context.metadataText.copyWith(
-                          color: colors.borderDark.withValues(alpha: 0.7),
+                          color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
                         ),
                       ),
                     ],
@@ -967,7 +967,7 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                 ),
                 Icon(
                   Icons.arrow_forward_rounded,
-                  color: colors.borderDark.withValues(alpha: 0.6),
+                  color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.6),
                 ),
               ],
             ),
@@ -990,7 +990,7 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
           style: context.metadataText.copyWith(
             fontWeight: FontWeight.w800,
             letterSpacing: 1.0,
-            color: colors.borderDark.withValues(alpha: 0.7),
+            color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
           ),
         ),
         const SizedBox(height: 12),
@@ -1007,7 +1007,7 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
               child: Text(
                 'No transactions on this card yet',
                 style: context.bodyMedium.copyWith(
-                  color: colors.borderDark.withValues(alpha: 0.6),
+                  color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.6),
                 ),
               ),
             ),
@@ -1046,14 +1046,14 @@ class _CardsScreenState extends ConsumerState<CardsScreen> {
                 subtitle: Text(
                   tx.category,
                   style: context.metadataText.copyWith(
-                    color: colors.borderDark.withValues(alpha: 0.7),
+                    color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
                   ),
                 ),
                 trailing: Text(
                   '-\$${tx.amount.toStringAsFixed(2)}',
                   style: context.bodyLarge.copyWith(
                     fontWeight: FontWeight.w800,
-                    color: colors.borderDark,
+                    color: context.isDark ? Colors.white : colors.borderDark,
                   ),
                 ),
                 onTap: () {

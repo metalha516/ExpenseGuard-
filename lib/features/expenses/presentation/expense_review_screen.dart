@@ -265,7 +265,7 @@ class _ExpenseReviewScreenState extends ConsumerState<ExpenseReviewScreen> {
                     Text(
                       'Verify merchant, category, and amounts before submission',
                       style: context.bodyMd.copyWith(
-                        color: colors.borderDark.withValues(alpha: 0.7),
+                        color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -316,7 +316,7 @@ class _ExpenseReviewScreenState extends ConsumerState<ExpenseReviewScreen> {
                       style: context.metadataText.copyWith(
                         letterSpacing: 2.0,
                         fontWeight: FontWeight.w800,
-                        color: colors.borderDark.withValues(alpha: 0.6),
+                        color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.6),
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -326,7 +326,7 @@ class _ExpenseReviewScreenState extends ConsumerState<ExpenseReviewScreen> {
                           : '\$${formState.amount.toStringAsFixed(2)}',
                       key: const Key('expense_amount_display'),
                       style: context.displayCurrency.copyWith(
-                        color: colors.borderDark,
+                        color: context.isDark ? Colors.white : colors.borderDark,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
@@ -580,7 +580,7 @@ class _ExpenseReviewScreenState extends ConsumerState<ExpenseReviewScreen> {
           Text(
             'Vendor',
             style: context.metadataText.copyWith(
-              color: colors.borderDark.withValues(alpha: 0.6),
+              color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.6),
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -609,7 +609,7 @@ class _ExpenseReviewScreenState extends ConsumerState<ExpenseReviewScreen> {
                   enabled: !state.isScanning,
                   style: context.bodyLg.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: colors.borderDark,
+                    color: context.isDark ? Colors.white : colors.borderDark,
                   ),
                   decoration: InputDecoration(
                     hintText: state.isScanning ? 'Scanning vendor...' : 'Enter vendor',
@@ -772,7 +772,7 @@ class _ExpenseReviewScreenState extends ConsumerState<ExpenseReviewScreen> {
           Text(
             'Amount (\$)',
             style: context.metadataText.copyWith(
-              color: colors.borderDark.withValues(alpha: 0.6),
+              color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.6),
               fontWeight: FontWeight.w600,
             ),
           ),

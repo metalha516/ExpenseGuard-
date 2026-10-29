@@ -582,7 +582,7 @@ class TransactionDetailScreen extends ConsumerWidget {
                     Text(
                       _formatTimestamp(txn.timestamp),
                       style: context.metadataText.copyWith(
-                        color: colors.borderDark.withValues(alpha: 0.7),
+                        color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
@@ -601,7 +601,7 @@ class TransactionDetailScreen extends ConsumerWidget {
                   Text(
                     txn.category,
                     style: context.metadataText.copyWith(
-                      color: colors.borderDark.withValues(alpha: 0.7),
+                      color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
                     ),
                   ),
                 ],
@@ -839,7 +839,7 @@ class TransactionDetailScreen extends ConsumerWidget {
                 Text(
                   mapSnippet.address,
                   style: context.bodyMd.copyWith(
-                    color: colors.borderDark.withValues(alpha: 0.75),
+                    color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.75),
                   ),
                 ),
               ],
@@ -908,7 +908,7 @@ class TransactionDetailScreen extends ConsumerWidget {
                   '${details.lineItems.length} items',
                   style: context.metadataText.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: colors.borderDark.withValues(alpha: 0.7),
+                    color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
                   ),
                 ),
               ],
@@ -944,7 +944,7 @@ class TransactionDetailScreen extends ConsumerWidget {
                             '${item.quantity}x',
                             style: context.metadataText.copyWith(
                               fontWeight: FontWeight.w700,
-                              color: colors.borderDark,
+                              color: context.isDark ? Colors.white : colors.borderDark,
                             ),
                           ),
                         ),
@@ -955,7 +955,7 @@ class TransactionDetailScreen extends ConsumerWidget {
                           child: Text(
                             item.description,
                             style: context.bodyMedium.copyWith(
-                              color: colors.borderDark,
+                              color: context.isDark ? Colors.white : colors.borderDark,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -966,7 +966,7 @@ class TransactionDetailScreen extends ConsumerWidget {
                         Text(
                           '\$${item.amount.toStringAsFixed(2)}',
                           style: context.bodyMedium.copyWith(
-                            color: colors.borderDark,
+                            color: context.isDark ? Colors.white : colors.borderDark,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -1040,7 +1040,7 @@ class TransactionDetailScreen extends ConsumerWidget {
           style: isBold
               ? context.titleMedium.copyWith(fontWeight: FontWeight.w800)
               : context.metadataText.copyWith(
-                  color: colors.borderDark.withValues(alpha: 0.7),
+                  color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
                 ),
         ),
         Text(
@@ -1049,7 +1049,7 @@ class TransactionDetailScreen extends ConsumerWidget {
               ? context.titleMedium.copyWith(fontWeight: FontWeight.w800)
               : context.metadataText.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: colors.borderDark,
+                  color: context.isDark ? Colors.white : colors.borderDark,
                 ),
         ),
       ],
@@ -1207,7 +1207,7 @@ class TransactionDetailScreen extends ConsumerWidget {
                               Text(
                                 check.title,
                                 style: context.bodyMedium.copyWith(
-                                  color: colors.borderDark,
+                                  color: context.isDark ? Colors.white : colors.borderDark,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -1216,7 +1216,7 @@ class TransactionDetailScreen extends ConsumerWidget {
                                 Text(
                                   check.detail!,
                                   style: context.metadataText.copyWith(
-                                    color: colors.borderDark.withValues(
+                                    color: context.isDark ? Colors.white70 : colors.borderDark.withValues(
                                       alpha: 0.7,
                                     ),
                                   ),
@@ -1418,13 +1418,13 @@ class TransactionDetailScreen extends ConsumerWidget {
                         step.title,
                         style: context.bodyMedium.copyWith(
                           fontWeight: FontWeight.w700,
-                          color: colors.borderDark,
+                          color: context.isDark ? Colors.white : colors.borderDark,
                         ),
                       ),
                       Text(
                         _formatShortTime(step.timestamp),
                         style: context.metadataText.copyWith(
-                          color: colors.borderDark.withValues(alpha: 0.6),
+                          color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.6),
                         ),
                       ),
                     ],
@@ -1433,7 +1433,7 @@ class TransactionDetailScreen extends ConsumerWidget {
                   Text(
                     step.subtitle,
                     style: context.metadataText.copyWith(
-                      color: colors.borderDark.withValues(alpha: 0.75),
+                      color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.75),
                     ),
                   ),
                 ],

@@ -21,6 +21,9 @@ class AppPastelColors extends ThemeExtension<AppPastelColors> {
     required this.borderWidth,
     required this.primarySage,
     required this.secondaryPlum,
+    required this.textPrimary,
+    required this.textSecondary,
+    required this.textMuted,
   });
 
   /// Mint pastel accent (#B5EAD7) - primary container, approved status, active items
@@ -60,6 +63,15 @@ class AppPastelColors extends ThemeExtension<AppPastelColors> {
   /// Muted Slate Plum (#695876)
   final Color secondaryPlum;
 
+  /// High-contrast primary text color (#1A1C1E in light, #F5F7F6 in dark)
+  final Color textPrimary;
+
+  /// Medium-contrast secondary text color (#5A625E in light, #CBD5D0 in dark)
+  final Color textSecondary;
+
+  /// Low-contrast muted text color (#8B9490 in light, #8E9B94 in dark)
+  final Color textMuted;
+
   /// Light theme preset for Pastel Flat
   static const AppPastelColors light = AppPastelColors(
     mint: Color(0xFFB5EAD7),
@@ -77,6 +89,9 @@ class AppPastelColors extends ThemeExtension<AppPastelColors> {
     borderWidth: 1.5,
     primarySage: Color(0xFF366758),
     secondaryPlum: Color(0xFF695876),
+    textPrimary: Color(0xFF1A1C1E),
+    textSecondary: Color(0xFF5A625E),
+    textMuted: Color(0xFF8B9490),
   );
 
   /// Dark theme preset for Pastel Flat
@@ -96,6 +111,9 @@ class AppPastelColors extends ThemeExtension<AppPastelColors> {
     borderWidth: 1.5,
     primarySage: Color(0xFFB5EAD7),
     secondaryPlum: Color(0xFFE2CCF0),
+    textPrimary: Color(0xFFF5F7F6),
+    textSecondary: Color(0xFFCBD5D0),
+    textMuted: Color(0xFF8E9B94),
   );
 
   @override
@@ -115,6 +133,9 @@ class AppPastelColors extends ThemeExtension<AppPastelColors> {
     double? borderWidth,
     Color? primarySage,
     Color? secondaryPlum,
+    Color? textPrimary,
+    Color? textSecondary,
+    Color? textMuted,
   }) {
     return AppPastelColors(
       mint: mint ?? this.mint,
@@ -132,6 +153,9 @@ class AppPastelColors extends ThemeExtension<AppPastelColors> {
       borderWidth: borderWidth ?? this.borderWidth,
       primarySage: primarySage ?? this.primarySage,
       secondaryPlum: secondaryPlum ?? this.secondaryPlum,
+      textPrimary: textPrimary ?? this.textPrimary,
+      textSecondary: textSecondary ?? this.textSecondary,
+      textMuted: textMuted ?? this.textMuted,
     );
   }
 
@@ -154,6 +178,9 @@ class AppPastelColors extends ThemeExtension<AppPastelColors> {
       borderWidth: lerpDouble(borderWidth, other.borderWidth, t)!,
       primarySage: Color.lerp(primarySage, other.primarySage, t)!,
       secondaryPlum: Color.lerp(secondaryPlum, other.secondaryPlum, t)!,
+      textPrimary: Color.lerp(textPrimary, other.textPrimary, t)!,
+      textSecondary: Color.lerp(textSecondary, other.textSecondary, t)!,
+      textMuted: Color.lerp(textMuted, other.textMuted, t)!,
     );
   }
 }
@@ -551,8 +578,14 @@ class AppTheme {
 
 /// Convenience extensions for accessing Pastel Flat tokens from BuildContext.
 extension AppThemeContextExtension on BuildContext {
+  bool get isDark => Theme.of(this).brightness == Brightness.dark;
+
   AppPastelColors get pastelColors =>
       Theme.of(this).extension<AppPastelColors>() ?? AppPastelColors.light;
+
+  Color get textPrimary => pastelColors.textPrimary;
+  Color get textSecondary => pastelColors.textSecondary;
+  Color get textMuted => pastelColors.textMuted;
 
   TextStyle get displayCurrency => Theme.of(this).textTheme.displayLarge!;
   TextStyle get metadataText => Theme.of(this).textTheme.labelSmall!;

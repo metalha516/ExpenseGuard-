@@ -17,8 +17,7 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final homeState = ref.watch(homeStateProvider);
     final colors = context.pastelColors;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
+    
     return Scaffold(
       appBar: AppBar(
         titleSpacing: AppTheme.marginMobile,
@@ -57,13 +56,13 @@ class HomeScreen extends ConsumerWidget {
                   style: context.headlineMd.copyWith(
                     fontSize: 18,
                     fontWeight: FontWeight.w800,
-                    color: isDark ? Colors.white : colors.primarySage,
+                    color: context.isDark ? Colors.white : colors.primarySage,
                   ),
                 ),
                 Text(
                   'Good morning, ${homeState.userName}',
                   style: context.metadataText.copyWith(
-                    color: isDark ? Colors.white70 : const Color(0xFF6F7975),
+                    color: context.isDark ? Colors.white70 : const Color(0xFF6F7975),
                   ),
                 ),
               ],
@@ -76,8 +75,8 @@ class HomeScreen extends ConsumerWidget {
             key: const Key('home_theme_toggle_button'),
             tooltip: 'Toggle Theme',
             icon: Icon(
-              isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
-              color: isDark ? colors.mint : colors.borderDark,
+              context.isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
+              color: context.isDark ? colors.mint : colors.borderDark,
             ),
             onPressed: () {
               ref.read(themeModeProvider.notifier).toggleTheme();
@@ -92,7 +91,7 @@ class HomeScreen extends ConsumerWidget {
               children: [
                 Icon(
                   Icons.notifications_none_rounded,
-                  color: isDark ? Colors.white : colors.borderDark,
+                  color: context.isDark ? Colors.white : colors.borderDark,
                 ),
                 if (homeState.unreadNotificationsCount > 0)
                   Positioned(
@@ -166,7 +165,7 @@ class HomeScreen extends ConsumerWidget {
                     child: Text(
                       'See all',
                       style: context.labelMd.copyWith(
-                        color: isDark ? colors.mint : colors.primarySage,
+                        color: context.isDark ? colors.mint : colors.primarySage,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
@@ -204,8 +203,7 @@ class _SpendSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.pastelColors;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
+    
     return Container(
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
@@ -225,7 +223,7 @@ class _SpendSummaryCard extends StatelessWidget {
               Text(
                 "Total spend this month",
                 style: context.bodyMd.copyWith(
-                  color: isDark ? Colors.white70 : const Color(0xFF6F7975),
+                  color: context.isDark ? Colors.white70 : const Color(0xFF6F7975),
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -244,7 +242,7 @@ class _SpendSummaryCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w700,
-                    color: isDark ? Colors.white : colors.borderDark,
+                    color: context.isDark ? Colors.white : colors.borderDark,
                   ),
                 ),
               ),
@@ -256,7 +254,7 @@ class _SpendSummaryCard extends StatelessWidget {
           Text(
             '\$${homeState.totalSpent.toStringAsFixed(2)}',
             style: context.displayCurrency.copyWith(
-              color: isDark ? Colors.white : colors.borderDark,
+              color: context.isDark ? Colors.white : colors.borderDark,
             ),
           ),
           const SizedBox(height: 14),
@@ -268,7 +266,7 @@ class _SpendSummaryCard extends StatelessWidget {
                 height: 10,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: isDark
+                  color: context.isDark
                       ? const Color(0xFF1E2026)
                       : const Color(0xFFEDEEEF),
                   borderRadius: BorderRadius.circular(5),
@@ -405,6 +403,7 @@ class _SummaryPillStat extends StatelessWidget {
               style: context.bodyMd.copyWith(
                 fontWeight: FontWeight.w700,
                 fontFeatures: const [FontFeature.tabularFigures()],
+                color: context.isDark ? Colors.white : colors.borderDark,
               ),
             ),
           ],
@@ -697,8 +696,7 @@ class _StatusBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.pastelColors;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
+    
     Color badgeBg;
     IconData icon;
     String label = status.displayName;
@@ -746,7 +744,7 @@ class _StatusBadge extends StatelessWidget {
             style: TextStyle(
               fontSize: 10,
               fontWeight: FontWeight.w700,
-              color: isDark && status == TransactionStatus.cleared
+              color: context.isDark && status == TransactionStatus.cleared
                   ? Colors.white
                   : colors.borderDark,
             ),

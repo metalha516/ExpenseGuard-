@@ -36,7 +36,7 @@ class _InsightsScreenState extends ConsumerState<InsightsScreen> {
               state.isDonutChart
                   ? Icons.bar_chart_rounded
                   : Icons.pie_chart_rounded,
-              color: colors.borderDark,
+              color: context.isDark ? Colors.white : colors.borderDark,
             ),
             onPressed: notifier.toggleChartType,
           ),
@@ -125,7 +125,7 @@ class _InsightsScreenState extends ConsumerState<InsightsScreen> {
             child: Text.rich(
               TextSpan(
                 style: context.bodyMedium.copyWith(
-                  color: colors.borderDark,
+                  color: context.isDark ? Colors.white : colors.borderDark,
                   fontSize: 14,
                   height: 1.4,
                 ),
@@ -300,7 +300,7 @@ class _InsightsScreenState extends ConsumerState<InsightsScreen> {
                         c.category,
                         style: context.metadataText.copyWith(
                           fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
-                          color: colors.borderDark,
+                          color: context.isDark ? Colors.white : colors.borderDark,
                         ),
                       ),
                       const SizedBox(width: 4),
@@ -308,7 +308,7 @@ class _InsightsScreenState extends ConsumerState<InsightsScreen> {
                         '${c.percentage.toStringAsFixed(0)}%',
                         style: context.metadataText.copyWith(
                           fontWeight: FontWeight.w700,
-                          color: colors.borderDark.withValues(alpha: 0.65),
+                          color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.65),
                         ),
                       ),
                     ],
@@ -386,7 +386,7 @@ class _InsightsScreenState extends ConsumerState<InsightsScreen> {
               style: context.metadataText.copyWith(
                 fontWeight: FontWeight.w800,
                 letterSpacing: 1.0,
-                color: colors.borderDark.withValues(alpha: 0.6),
+                color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.6),
                 fontSize: 10,
               ),
             ),
@@ -396,7 +396,7 @@ class _InsightsScreenState extends ConsumerState<InsightsScreen> {
               key: const Key('insights_total_spent_text'),
               style: context.headlineLg.copyWith(
                 fontWeight: FontWeight.w900,
-                color: colors.borderDark,
+                color: context.isDark ? Colors.white : colors.borderDark,
                 fontSize: 22,
               ),
             ),
@@ -559,7 +559,7 @@ class _InsightsScreenState extends ConsumerState<InsightsScreen> {
                             style: context.metadataText.copyWith(
                               fontWeight: FontWeight.w700,
                               fontSize: 11,
-                              color: colors.borderDark.withValues(alpha: 0.7),
+                              color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.7),
                             ),
                           ),
                         );
@@ -675,7 +675,7 @@ class _InsightsScreenState extends ConsumerState<InsightsScreen> {
                             Text(
                               '${c.percentage.toStringAsFixed(1)}% of total budget',
                               style: context.metadataText.copyWith(
-                                color: colors.borderDark.withValues(alpha: 0.65),
+                                color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.65),
                               ),
                             ),
                           ],
@@ -685,7 +685,7 @@ class _InsightsScreenState extends ConsumerState<InsightsScreen> {
                         '\$${c.amount.toStringAsFixed(2)}',
                         style: context.bodyLarge.copyWith(
                           fontWeight: FontWeight.w800,
-                          color: colors.borderDark,
+                          color: context.isDark ? Colors.white : colors.borderDark,
                         ),
                       ),
                     ],
@@ -750,7 +750,7 @@ class _InsightsScreenState extends ConsumerState<InsightsScreen> {
           Text(
             'Travel accounts for 65% of your outflow this cycle. Booking flights 14+ days in advance is projected to reduce overall travel expenditure by ~12%.',
             style: context.bodyMedium.copyWith(
-              color: colors.borderDark.withValues(alpha: 0.85),
+              color: context.isDark ? Colors.white70 : colors.borderDark.withValues(alpha: 0.85),
               height: 1.45,
             ),
           ),
